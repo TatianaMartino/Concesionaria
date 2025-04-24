@@ -4,24 +4,18 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <servlet> <!-- <servlet>: Declara el servlet. -->
-  	<servlet-name>AutoController</servlet-name> <!-- <servlet-name>: Nombre del servlet (debe coincidir con el usado en <servlet-mapping>). -->
-  	<display-name>AutoController</display-name> 
-  	<description></description>
-  	<servlet-class>com.sample.core.controller.AutoController</servlet-class> <!-- <servlet-class>: Especifica la clase Java que implementa el servlet. -->
-  </servlet>
-  <servlet>
-  	<servlet-name>LoadAutoForm</servlet-name>
-  	<display-name>LoadAutoForm</display-name>
-  	<description></description>
-  	<servlet-class>com.sample.core.controller.LoadAutoForm</servlet-class>
-  </servlet>
-  <servlet-mapping> <!-- <servlet-mapping>: Asigna un servlet a una URL específica. -->
-  	<servlet-name>AutoController</servlet-name>
-  	<url-pattern>/AutoController</url-pattern> <!-- <url-pattern>: Especifica la URL que activará el servlet. -->
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>LoadAutoForm</servlet-name>
-  	<url-pattern>/LoadAutoForm</url-pattern>
-  </servlet-mapping>
+  
+  <welcome-file-list>
+	<welcome-file>home.jsp</welcome-file>
+</welcome-file-list>
+  
+  <error-page>
+	<error-code>400</error-code>
+	<location>/error</location >
+</error-page>
+ <error-page >
+<exception-type>javax.servlet.ServletException</exception-type>
+<location>/error</location>
+</error-page>
+  
 </web-app>
