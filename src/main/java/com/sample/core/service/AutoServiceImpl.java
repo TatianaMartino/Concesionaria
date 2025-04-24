@@ -30,7 +30,7 @@ public class AutoServiceImpl implements AutoService {
 
 	@Override
 	public void delete(int id) throws Exception {
-		// TODO Auto-generated method stub
+		AutoDao.delete(id);
 		
 	}
 
