@@ -9,7 +9,7 @@ public class ClienteDaoImp implements ClienteDao {
 
 	private Conexion conexion = Conexion.getInstance();
 
-	private static final String queryAddCliente = "INSERT INTO Cliente (nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono) VALUES (?,?,?,?,?,?)";
+	private static final String queryAddCliente = "INSERT INTO cliente (nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono) VALUES (?,?,?,?,?,?,?)";
 
 	@Override
 	public void guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
