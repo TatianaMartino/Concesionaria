@@ -29,7 +29,7 @@ public class LeerAuto extends HttpServlet {
 
 		try {
 			req.setAttribute("autos", AutoService.listarAutos());
-			req.getRequestDispatcher("/listarAutos.jsp").forward(req, resp);
+			req.getRequestDispatcher("/home.jsp").forward(req, resp);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
