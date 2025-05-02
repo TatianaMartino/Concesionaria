@@ -51,7 +51,7 @@
 
 		<div class="form-group">
 			<label for="exampleInputPassword1">Precio</label> <input type="text"
-				class="precio" id="precio" name="precio"
+				class="form-control" id="precio" name="precio"
 				aria-describedby="emailHelp" placeholder="Ingrese un precio">
 		</div>
 		
