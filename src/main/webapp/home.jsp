@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="domain.Auto" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +11,47 @@
 <body>
 
 <header>
-<img src="img/.jpg" alt="Logo"> 
-<h1>Concesionaria</h1>
+    <img src="img/logo.jpg" alt="Logo"> 
+    <h1>Concesionaria</h1>
 </header>
-
 <br>
-
 <section>
-<article><img src="img/autos-2.jpg" alt="Logo"> </article>
-<aside> <h2>Datos del auto</h2></aside>
+    <% 
+    List<Auto> autos = (List<Auto>) request.getAttribute("autos");
+    if (autos != null && !autos.isEmpty()) {
+        for (Auto auto : autos) {
+    %>
+
+    <article style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+    <img src="img/autos-2.jpg" alt="Imagen de autos">
+        <h3><%= auto.getMarca() %> - <%= auto.getModelo() %></h3>
+        <p><strong>ID:</strong> <%= auto.getId() %></p>
+        <p><strong>Descripción:</strong> <%= auto.getDescripcion() %></p>
+        <p><strong>Stock:</strong> <%= auto.getStock() %></p>
+        <p><strong>Precio:</strong> $<%= auto.getPrecio() %></p>
+        <p><strong>Sucursal ID:</strong> <%= auto.getSucursal_id() %></p>
+        <p><strong>Disponibilidad:</strong> <%= auto.getDisponibilidad() %></p>
+
+        <form action="ReservarAutoServlet" method="post" style="display:inline;">
+            <input type="hidden" name="autoId" value="<%= auto.getId() %>">
+            <button type="submit">Reservar</button>
+        </form>
+
+        <form action="ComprarAutoServlet" method="post" style="display:inline;">
+            <input type="hidden" name="autoId" value="<%= auto.getId() %>">
+            <button type="submit">Comprar</button>
+        </form>
+    </article>
+
+    <% 
+        }
+    } else { 
+    %>
+        <p>No hay autos disponibles.</p>
+    <% 
+    } 
+    %>
 </section>
-
-<div>
-<button>Reservar auto</button>
-<button>Comprar auto</button>
-
-</div>
 
 </body>
 </html>
