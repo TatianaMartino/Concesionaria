@@ -14,6 +14,11 @@
     <img src="img/logo.jpg" alt="Logo"> 
     <h1>Concesionaria</h1>
 </header>
+
+<div>
+	<a class="btn btn-primary"  href="<%=request.getContextPath()%>/autoForm.jsp" > Agregar Auto </a> 
+</div>
+
 <br>
 <section>
     <% 
@@ -33,13 +38,13 @@
         <p><strong>Disponibilidad:</strong> <%= auto.getDisponibilidad() %></p>
 
         <form action="ReservarAutoServlet" method="post" style="display:inline;">
-            <input type="hidden" name="autoId" value="<%= auto.getId() %>">
-            <button type="submit">Reservar</button>
+            <input type="hidden" name="autoId" value="<%= auto.getId() %>">         
+          <a class="btn btn-primary"  href="<%=request.getContextPath()%>/datosCliente.jsp" > Reservar Auto </a> 
         </form>
 
         <form action="ComprarAutoServlet" method="post" style="display:inline;">
             <input type="hidden" name="autoId" value="<%= auto.getId() %>">
-            <button type="submit">Comprar</button>
+            <a class="btn btn-primary"  href="<%=request.getContextPath()%>/datosCliente.jsp" > Reservar Auto </a> 
         </form>
     </article>
 
