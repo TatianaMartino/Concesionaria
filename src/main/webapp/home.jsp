@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Inicio</title>
-<link rel="stylesheet" href="css/estiloInicio.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/estiloInicio.css">
 </head>
 <body>
 
 <header>
-    <img src="img/logo.jpg" alt="Logo"> 
+    <img src="img/logo.png" alt="Logo"> 
     <h1>Concesionaria</h1>
 </header>
 
@@ -31,7 +31,7 @@
     <img src="img/autos-2.jpg" alt="Imagen de autos">
         <h3><%= auto.getMarca() %> - <%= auto.getModelo() %></h3>
         <p><strong>ID:</strong> <%= auto.getId() %></p>
-        <p><strong>Descripción:</strong> <%= auto.getDescripcion() %></p>
+        <p><strong>Descripcion:</strong> <%= auto.getDescripcion() %></p>
         <p><strong>Stock:</strong> <%= auto.getStock() %></p>
         <p><strong>Precio:</strong> $<%= auto.getPrecio() %></p>
         <p><strong>Sucursal ID:</strong> <%= auto.getSucursal_id() %></p>
@@ -44,7 +44,7 @@
 
         <form action="ComprarAutoServlet" method="post" style="display:inline;">
             <input type="hidden" name="autoId" value="<%= auto.getId() %>">
-            <a class="btn btn-primary"  href="<%=request.getContextPath()%>/datosCliente.jsp" > Reservar Auto </a> 
+            <a class="btn btn-primary"  href="<%=request.getContextPath()%>/datosCliente.jsp" > Comprar Auto </a> 
         </form>
     </article>
 
