@@ -31,38 +31,44 @@ public class ClienteController extends HttpServlet {
 
 		try {
 			// Obtener datos del auto
-			String idAuto = req.getParameter("id");
-			int idAUtoParseado = Integer.parseInt(idAuto);
-			Auto auto = autoService.consultarAuto(idAUtoParseado); // para consultar el id del auto que esta reservando
-																	// el cliente
+			String idAuto = req.getParameter("id");// aca esta el id del formulario
 
-			// Obtener datos del cliente
-			String nombre = req.getParameter("nombre");
-			String apellido = req.getParameter("apellido");
-			String correo = req.getParameter("correo");
-			String dni = req.getParameter("dni");
-			String codigo_postal = req.getParameter("codigo_postal");
-			String dato_tarjeta = req.getParameter("dato_tarjeta");
-			String telefono = req.getParameter("telefono");
+			if (idAuto != null) {
 
-			//Crear cliente y guardar los datos
-			Cliente cliente = new Cliente(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
-			
-			clienteService.guardar_datos(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
-			
-			//Crear Pedido
-			Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
+				int idAUtoParseado = Integer.parseInt(idAuto);
+				Auto auto = autoService.consultarAuto(idAUtoParseado); 
+				// para consultar el id del auto que esta reservando el cliente
 
-		// Ver datos recibidos del formulario
-		System.out.println("Datos del Pedido");
-		System.out.println("Cliente: " + cliente.getNombre() + "" + cliente.getApellido());
-		System.out.println("Auto: " + auto.getMarca() + ""+ auto.getModelo());
+				// Obtener datos del cliente
+				String nombre = req.getParameter("nombre");
+				String apellido = req.getParameter("apellido");
+				String correo = req.getParameter("correo");
+				String dni = req.getParameter("dni");
+				String codigo_postal = req.getParameter("codigo_postal");
+				String dato_tarjeta = req.getParameter("dato_tarjeta");
+				String telefono = req.getParameter("telefono");
 
+				// Crear cliente y guardar los datos del formulario
+				Cliente cliente = new Cliente(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
 
+				clienteService.guardar_datos(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
+
+				// Crear Pedido
+				Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
+
+				// Ver datos recibidos del formulario
+				System.out.println("Datos del Pedido");
+				System.out.println("Cliente: " + cliente.getNombre() + "" + cliente.getApellido());
+				System.out.println("Auto: " + auto.getMarca() + "" + auto.getModelo());
+
+			} else {
+				resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID del auto no proporcionado."); //en caso de que el id este vacio
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
 
+		}
+
+	}
 }
