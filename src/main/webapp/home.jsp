@@ -38,7 +38,11 @@
         <p><strong>Disponibilidad:</strong> <%= auto.getDisponibilidad() %></p>
 
         <!--Aca le paso el ID del auto -->
-        <a class="btn btn-primary" href="<%=request.getContextPath()%>/datosCliente.jsp?id=<%=auto.getId()%>">Reservar Auto</a>
+       <% if ("RESERVADO".equalsIgnoreCase(auto.getDisponibilidad())) { %>
+    <a class="btn btn-warning" href="<%=request.getContextPath()%>/actualizarEstadoAuto?autoId=<%=auto.getId()%>&accion=cancelar">Cancelar reserva</a>
+      <% } else { %>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/actualizarEstadoAuto?autoId=<%=auto.getId()%>&accion=reservar">Reservar Auto</a>
+      <% } %>
     	<a class="btn btn-primary" href="<%=request.getContextPath()%>/datosCliente.jsp?id=<%=auto.getId()%>">Comprar Auto</a>
     </article>
 
