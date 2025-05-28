@@ -35,13 +35,9 @@ public class AutoServiceImpl implements AutoService {
 		
 	}
 	
-	public void Reservar(int id, Disponibilidad disponibilidadAuto) throws Exception {
-		AutoDao.ReservarAuto(id, disponibilidadAuto);
+	public void CambiarDisponibilidad(int id, Disponibilidad disponibilidadAuto) throws Exception {
+		AutoDao.CambiarEstado(id, disponibilidadAuto);
 	}
 
-	@Override
-	public void Comprar(int id, Disponibilidad disponibilidadAuto) throws Exception {
-		AutoDao.ComprarAuto(id, disponibilidadAuto);
-	}
 
 }

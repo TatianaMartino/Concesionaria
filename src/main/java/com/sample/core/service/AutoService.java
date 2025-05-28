@@ -15,9 +15,7 @@ public interface AutoService {
 	
 	public void delete(int id) throws Exception;
 	
-	public void Reservar(int id, Disponibilidad disponibilidadAuto) throws Exception;
-	
-	public void Comprar(int id, Disponibilidad disponibilidadAuto) throws Exception;
+	public void CambiarDisponibilidad(int id, Disponibilidad disponibilidadAuto) throws Exception;
 
 
 }
