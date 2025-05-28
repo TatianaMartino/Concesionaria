@@ -192,14 +192,15 @@ public class AutoDaoImp implements AutoDao {
 
 	}
 
-	public void ReservarAuto(int id, Disponibilidad disponibilidadAuto) throws Exception {
+	public void CambiarEstado(int id, Disponibilidad disponibilidadAuto) throws Exception {
 
 		PreparedStatement ps = null;
 		try {
 			ps = conexion.dameConnection().prepareStatement(queryCambiarEstadoAuto);
 			ps.setString(1, disponibilidadAuto.RESERVADO.name());
 			ps.setInt(2, id);
-
+		    ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace(); // imprime el error
 		} finally {
@@ -207,23 +208,6 @@ public class AutoDaoImp implements AutoDao {
 
 		}
 	};
-	
-	public void ComprarAuto(int id, Disponibilidad disponibilidadAuto) throws Exception {
-
-		PreparedStatement ps = null;
-		try {
-			ps = conexion.dameConnection().prepareStatement(queryCambiarEstadoAuto);
-			ps.setString(1, disponibilidadAuto.COMPRADO.name());
-			ps.setInt(2, id);
-
-		} catch (SQLException e) {
-			e.printStackTrace(); // imprime el error
-		} finally {
-			ps.close();
-
-		}
-	};
-	
 
 	private void finalizarConexion(Statement st) {
 		try {

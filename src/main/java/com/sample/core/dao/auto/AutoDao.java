@@ -15,8 +15,6 @@ public interface AutoDao {
 	
 	public void delete (int id) throws Exception;
 	
-	public void ReservarAuto(int id, Disponibilidad disponibilidadAuto) throws Exception;
-	
-	public void ComprarAuto(int id, Disponibilidad disponibilidadAuto) throws Exception;
+	public void CambiarEstado(int id, Disponibilidad disponibilidadAuto) throws Exception;
 
 }
