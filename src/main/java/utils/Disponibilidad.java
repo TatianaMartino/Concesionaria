@@ -2,7 +2,7 @@ package utils;
 
 public enum Disponibilidad {
 
-	DISPONIIBLE,
+	DISPONIBLE,
 	RESERVADO,
 	COMPRADO	
 }
