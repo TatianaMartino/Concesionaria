@@ -19,6 +19,7 @@ import domain.Pedido;
 import utils.Disponibilidad;
 import utils.SituacionPedidos;
 
+
 @WebServlet(urlPatterns = "/GuardarDatosCliente")
 
 public class ClienteController extends HttpServlet {
@@ -49,9 +50,8 @@ public class ClienteController extends HttpServlet {
 				String telefono = req.getParameter("telefono");
 
 				// Crear cliente y guardar los datos del formulario
-				Cliente cliente = new Cliente(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
+				Cliente cliente = clienteService.guardar_datos(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
 
-				clienteService.guardar_datos(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
 
 				// Crear Pedido
 				Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
