@@ -7,6 +7,7 @@ import com.sample.core.dao.auto.AutoDao;
 import com.sample.core.dao.auto.AutoDaoImp;
 
 import domain.Auto;
+import utils.Disponibilidad;
 
 public class AutoServiceImpl implements AutoService {
 	
@@ -32,6 +33,15 @@ public class AutoServiceImpl implements AutoService {
 	public void delete(int id) throws Exception {
 		AutoDao.delete(id);
 		
+	}
+	
+	public void Reservar(int id, Disponibilidad disponibilidadAuto) throws Exception {
+		AutoDao.ReservarAuto(id, disponibilidadAuto);
+	}
+
+	@Override
+	public void Comprar(int id, Disponibilidad disponibilidadAuto) throws Exception {
+		AutoDao.ComprarAuto(id, disponibilidadAuto);
 	}
 
 }
