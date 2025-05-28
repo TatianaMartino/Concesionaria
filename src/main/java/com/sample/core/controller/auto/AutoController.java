@@ -19,7 +19,9 @@ import com.sample.core.dao.config.Conexion;
 import com.sample.core.service.AutoService;
 import com.sample.core.service.AutoServiceImpl;
 
-@WebServlet(urlPatterns = "/crearAuto")
+import utils.Disponibilidad;
+
+@WebServlet(urlPatterns = {"/crearAuto", "/actualizarEstadoAuto"}) //creamos dos url, una para actualizarEstado y uno para crearAuto
 
 public class AutoController extends HttpServlet {
 
@@ -27,7 +29,10 @@ public class AutoController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String path = req.getServletPath();  // Saber qué URL fue llamada
 
+		 if ("/crearAuto".equals(path)) {
+		
 		// Ver datos recibidos del formulario en pantalla de Eclipse
 
 		String modelo = req.getParameter("modelo");
@@ -71,6 +76,55 @@ public class AutoController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}else if ("/actualizarEstadoAuto".equals(path)) {
+            procesarActualizarEstadoAuto(req, resp);
+
+        } else {
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+        }
+    }
+		 
+		 @Override
+		    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		        String path = req.getServletPath();
+
+		        if ("/actualizarEstadoAuto".equals(path)) {
+		            procesarActualizarEstadoAuto(req, resp);
+		        } else {
+		            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+		        }
+		    }
+
+		    private void procesarActualizarEstadoAuto(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		        String autoIdStr = req.getParameter("autoId");
+		        String accion = req.getParameter("accion");
+
+		        int Id;
+		        Id = Integer.parseInt(autoIdStr);
+		        
+		        Disponibilidad disponibilidad = null;
+		        if ("reservar".equalsIgnoreCase(accion)) {
+		            disponibilidad = Disponibilidad.RESERVADO;
+		        } else if ("comprar".equalsIgnoreCase(accion)) {
+		            disponibilidad = Disponibilidad.COMPRADO;
+		        } else if ("cancelar".equalsIgnoreCase(accion)) {
+		            disponibilidad = Disponibilidad.DISPONIBLE;
+		        }else {
+		            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Acción inválida");
+		            return;
+		        }
+
+		        try {
+		            AutoService.CambiarDisponibilidad(Id, disponibilidad);
+
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al actualizar estado");
+		        }
+		        
+		        resp.sendRedirect(req.getContextPath() + "/LeerAuto"); 
+
+		    }
+		 
 
 	}
-}
