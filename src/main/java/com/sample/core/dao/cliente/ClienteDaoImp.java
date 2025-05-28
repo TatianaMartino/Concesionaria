@@ -89,7 +89,7 @@ public class ClienteDaoImp implements ClienteDao {
 	}
 
 	@Override
-	public void guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
+	public Cliente guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
 			String dato_tarjeta, String telefono) throws Exception {
 
 		PreparedStatement st = null;
@@ -106,7 +106,10 @@ public class ClienteDaoImp implements ClienteDao {
 		finalizarConexion(st);
 		
 		// Confirmar la transacción
-					st.getConnection().commit();
+		st.getConnection().commit();
+					
+			 Cliente cliente = new Cliente(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
+				return Cliente;
 				} catch (SQLException e) {
 					if (st != null) {
 						try {
