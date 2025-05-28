@@ -11,7 +11,7 @@ public class Cliente {
 	private String dato_tarjeta;
 	private String telefono;
 	
-	Cliente(String nombre, String apellido, String correo, String dni, String codigo_postal, String dato_tarjeta, String telefono){
+	public Cliente(String nombre, String apellido, String correo, String dni, String codigo_postal, String dato_tarjeta, String telefono){
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.correo = correo;
