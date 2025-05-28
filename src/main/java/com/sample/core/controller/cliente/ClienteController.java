@@ -50,7 +50,7 @@ public class ClienteController extends HttpServlet {
 				String telefono = req.getParameter("telefono");
 
 				// Crear cliente y guardar los datos del formulario
-				Cliente cliente = clienteService.guardar_datos(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
+				clienteService.guardar_datos(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
 
 
 				// Crear Pedido
