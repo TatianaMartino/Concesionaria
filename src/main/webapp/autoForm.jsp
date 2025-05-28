@@ -66,7 +66,7 @@
 		<div class="form-group"> 
 			<label for="disponibilidad">Seleccione disponibilidad:</label>
   		  	<select id="disponibilidad" name="disponibilidad" class="form-control">
-        		<option value="Disponible">Disponible</option>
+        		<option value="Disponible">DISPONIBLE</option>
     		</select>
     	</div>
     		
