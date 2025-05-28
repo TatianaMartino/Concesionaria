@@ -197,7 +197,7 @@ public class AutoDaoImp implements AutoDao {
 		PreparedStatement ps = null;
 		try {
 			ps = conexion.dameConnection().prepareStatement(queryCambiarEstadoAuto);
-			ps.setString(1, disponibilidadAuto.RESERVADO.name());
+			ps.setString(1, disponibilidadAuto.name());
 			ps.setInt(2, id);
 		    ps.executeUpdate();
 			
