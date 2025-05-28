@@ -4,54 +4,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Datos del Cliente</title>
 </head>
 <body>
-	<form class="form" id="formAuto" action="<%=request.getContextPath()%>/GuardarDatosCliente" method="get">
+	<form class="form" id="formCliente" action="<%=request.getContextPath()%>/GuardarDatosCliente" method="post">
+
+		<input type="hidden" name="id" value="<%=request.getParameter("id")%>" />
+		<!-- Guarda el id del auto que el cliente eligió -->
+		<!-- Oculto el ID del auto reservado para que el usuario no tenga que ver ese dato ya que no es imporatnte para el.
+		Se le pasa el Id para que el servlet "GuardarDatosCliente" puede saber qué auto está reservando/comprando el cliente -->
+
 		<div class="form-group">
 			<label for="nombre">Nombre:</label> <input type="text"
 				class="form-control" id="nombre" name="nombre"
-				aria-describedby="emailHelp" placeholder="Ingrese su nombre: ">
+				placeholder="Ingrese su nombre" required>
 		</div>
 
 		<div class="form-group">
 			<label for="apellido">Apellido:</label> <input type="text"
 				class="form-control" id="apellido" name="apellido"
-				aria-describedby="emailHelp" placeholder="Ingrese su apellido">
+				placeholder="Ingrese su apellido" required>
 		</div>
 
 		<div class="form-group">
-			<label for="correo">Correo:</label> <input type="text"
+			<label for="correo">Correo:</label> <input type="email"
 				class="form-control" id="correo" name="correo"
-				aria-describedby="emailHelp" placeholder="Ingrese su correo">
+				placeholder="Ingrese su email" required>
 		</div>
 
 		<div class="form-group">
-			<label for="dni">Dni:</label> <input type="text" class="form-control"
-				id="dni" name="dni" aria-describedby="emailHelp"
-				placeholder="Ingrese su dni">
-		</div>
+			<label for="dni">DNI:</label> <input type="text" class="dni" id="dni"
+				name="dni" placeholder="Ingrese su dni" required>
 
-		<div class="form-group">
-			<label for="codigo_postal">Codigo postal</label> <input type="text"
-				class="codigo_postal" id="codigo_postal" name="codigo_postal"
-				aria-describedby="emailHelp" placeholder="Ingrese su codigo postal">
-		</div>
+			<div class="form-group">
+				<label for="codigo_postal">Código postal:</label> <input type="text"
+					class="codigo_postal" id="codigo_postal" name="codigo_postal"
+					placeholder="Ingrese su codigo postal" required>
+			</div>
 
-		<div class="form-group">
-			<label for="dato_tarjeta">Dato tarjeta: </label> <input type="text"
-				class="dato_tarjeta" id="dato_tarjeta" name="dato_tarjeta"
-				placeholder="Ingrese los datos de la tarjeta">
-		</div>
+			<div class="form-group">
+				<label for="dato_tarjeta">Dato tarjeta:</label> <input type="text"
+					class="dato_tarjeta" id="dato_tarjeta" name="dato_tarjeta"
+					placeholder="Ingrese su numero de tarjeta" required>
+			</div>
 
-		<div class="form-group">
-			<label for="telefono">Telefono</label> <input type="text"
-				class="telefono" id="telefono" name="telefono"
-				aria-describedby="emailHelp" placeholder="Ingrese su telefono: ">
-		</div>
-		
-		<button type="submit" class="btn btn-primary">Enviar</button>
-	
+			<div class="form-group">
+				<label for="telefono">Teléfono:</label> <input type="text"
+					class="telefono" id="telefono" name="telefono"
+					placeholder="Ingrese su numero de telefono" required>
+			</div>
+
+			<button type="submit">Enviar</button>
 	</form>
 </body>
 </html>
