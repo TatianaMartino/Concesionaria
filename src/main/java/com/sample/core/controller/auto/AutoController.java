@@ -1,4 +1,4 @@
-package com.sample.core.controller;
+package com.sample.core.controller.auto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
