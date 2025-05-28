@@ -1,14 +1,14 @@
 package domain;
 
 import utils.Disponibilidad;
-import utils.Situacion;
+import utils.SituacionPedidos;
 
 public class Pedido {
 
 	private String id;
 	private int monto;
 
-	private Situacion situacion; // enum de Situacion
+	private SituacionPedidos situacion; // enum de Situacion
 
 	Auto auto;
 
@@ -16,7 +16,7 @@ public class Pedido {
 
 	Cliente cliente;
 
-	public Pedido(Auto auto, Disponibilidad disponibilidad, Cliente cliente, Situacion situacion) {
+	public Pedido(Auto auto, Disponibilidad disponibilidad, Cliente cliente, SituacionPedidos situacion) {
 		super();
 		this.auto = auto;
 		this.disponibilidad = disponibilidad;
@@ -27,6 +27,30 @@ public class Pedido {
 	public String generarCodigo() {
 
 		return "abcdefg";
+	}
+	
+	public Auto getAuto() {
+	    return auto;
+	}
+
+	public void setAuto(Auto auto) {
+	    this.auto = auto;
+	}
+
+	public Cliente getCliente() {
+	    return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+	    this.cliente = cliente;
+	}
+
+	public Disponibilidad getDisponibilidad() {
+	    return disponibilidad;
+	}
+
+	public void setDisponibilidad(Disponibilidad disponibilidad) {
+	    this.disponibilidad = disponibilidad;
 	}
 
 	public String getId() {
@@ -45,11 +69,11 @@ public class Pedido {
 		this.monto = monto;
 	}
 
-	public Situacion getSituacion() {
+	public SituacionPedidos getSituacion() {
 		return situacion;
 	}
 
-	public void setSituacion(Situacion situacion) {
+	public void setSituacion(SituacionPedidos situacion) {
 		this.situacion = situacion;
 	}
 }
