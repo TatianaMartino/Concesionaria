@@ -88,47 +88,6 @@ public class ClienteDaoImp implements ClienteDao {
 		return null;
 	}
 
-	@Override
-	public Cliente guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
-			String dato_tarjeta, String telefono) throws Exception {
-
-		PreparedStatement st = null;
-		try {
-		st = conexion.dameConnection().prepareStatement(queryAddCliente);
-		st.setString(1, nombre);
-		st.setString(2, apellido);
-		st.setString(3, correo);
-		st.setString(4, dni);
-		st.setString(5, codigo_postal);
-		st.setString(6, dato_tarjeta);
-		st.setString(7, telefono);
-		st.executeUpdate();
-		finalizarConexion(st);
-		
-		// Confirmar la transacción
-		st.getConnection().commit();
-					
-			 Cliente cliente = new Cliente(nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono);
-				return Cliente;
-				} catch (SQLException e) {
-					if (st != null) {
-						try {
-							st.getConnection().rollback();
-						} catch (SQLException rollbackEx) {
-							rollbackEx.printStackTrace();
-						}
-					}
-					throw new SQLException("Error al guardar el cliente: " + e.getMessage(), e);
-				} finally {
-					if (st != null) {
-						try {
-							st.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
 
 	private void finalizarConexion(PreparedStatement st) {
 		try {
@@ -138,6 +97,13 @@ public class ClienteDaoImp implements ClienteDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
+			String dato_tarjeta, String telefono) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
