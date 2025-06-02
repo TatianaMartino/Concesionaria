@@ -11,6 +11,10 @@ public class Cliente {
 	private String dato_tarjeta;
 	private String telefono;
 	
+	public 	Cliente() {
+		
+	}
+	
 	public Cliente(String id, String nombre, String apellido, String correo, String dni, String codigo_postal, String dato_tarjeta, String telefono){
 		super();
 		this.id = id;
