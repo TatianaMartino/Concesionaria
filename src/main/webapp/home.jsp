@@ -5,19 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+</style>
 <title>Inicio</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/estiloInicio.css">
 </head>
 <body>
 
 <header>
-    <img src="img/logo.png" alt="Logo"> 
-    <h1>Concesionaria</h1>
+    <div class="header-top">
+        <img src="img/TopCarLogo1.png" alt="Logo"> 
+        <h1>Concesionaria Topcar</h1>
+    </div>
+     <div class="header-bottom">
+        <a class="btn btn-primary" href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a>
+    </div>
 </header>
 
-<div>
-	<a class="btn btn-primary" href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a> 
-</div>
+
 
 <br>
 <section>
