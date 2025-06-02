@@ -4,10 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+</style>
 <title>Datos del Cliente</title>
+<link rel="stylesheet" href="css/estiloForm.css">
 </head>
 <body>
 	<form class="form" id="formCliente" action="<%=request.getContextPath()%>/GuardarDatosCliente" method="post">
+	<h1>Ingrese sus datos</h1>
 
 		<input type="hidden" name="id" value="<%=request.getParameter("id")%>" />
 		<!-- Guarda el id del auto que el cliente eligió -->
@@ -35,6 +40,8 @@
 		<div class="form-group">
 			<label for="dni">DNI:</label> <input type="text" class="dni" id="dni"
 				name="dni" placeholder="Ingrese su dni" required>
+		</div>
+			
 
 			<div class="form-group">
 				<label for="codigo_postal">Código postal:</label> <input type="text"
