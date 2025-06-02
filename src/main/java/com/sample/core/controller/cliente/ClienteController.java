@@ -31,6 +31,9 @@ public class ClienteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+			
+			Cliente cliente = new Cliente();			
+			
 			// Obtener datos del auto
 			String idAuto = req.getParameter("id");// aca esta el id del formulario
 
