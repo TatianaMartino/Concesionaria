@@ -1,17 +1,18 @@
-package com.sample.core.service.encargado;
+package com.sample.core.service.vendedor;
 
 import java.util.List;
 
-import com.sample.core.dao.encargado.EncargadoDao;
-import com.sample.core.dao.encargado.EncargadoDaoImp;
-import domain.Encargado;
+import com.sample.core.dao.vendedor.VendedorDao;
+import com.sample.core.dao.vendedor.VendedorDaoImp;
 
-public class EncargadoServiceImpl implements EncargadoService {
+import domain.Vendedor;
 
-	private EncargadoDao encargadoDao = new EncargadoDaoImp();
+public class VendedorServiceImpl implements VendedorService {
+
+	private VendedorDao encargadoDao = new VendedorDaoImp();
 
 	@Override
-	public List<Encargado> listarEncargado() throws Exception { // utiliza la lista creada en la interaz
+	public List<Vendedor> listarEncargado() throws Exception { // utiliza la lista creada en la interaz
 																// EncargadoService
 
 		return encargadoDao.list();
