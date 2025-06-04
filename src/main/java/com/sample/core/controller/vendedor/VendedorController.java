@@ -1,4 +1,4 @@
-package com.sample.core.controller.encargado;
+package com.sample.core.controller.vendedor;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sample.core.dao.config.Conexion;
-import com.sample.core.service.encargado.EncargadoService;
-import com.sample.core.service.encargado.EncargadoServiceImpl;
+import com.sample.core.service.encargado.VendedorService;
+import com.sample.core.service.encargado.VendedorServiceImpl;
 
 @WebServlet(urlPatterns = "/CrearEncargado")
-public class EncargadoController extends HttpServlet { // hereda de HttpServlet, lo que le permite manejar solicitudes
+public class VendedorController extends HttpServlet { // hereda de HttpServlet, lo que le permite manejar solicitudes
 														// HTTP.
 
-	EncargadoService encargadoService = new EncargadoServiceImpl();
+	VendedorService encargadoService = new VendedorServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

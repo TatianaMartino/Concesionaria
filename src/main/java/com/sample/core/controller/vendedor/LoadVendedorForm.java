@@ -1,4 +1,4 @@
-package com.sample.core.controller.encargado;
+package com.sample.core.controller.vendedor;
 
 import java.io.IOException;
 
@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import domain.Encargado;
-import com.sample.core.service.encargado.EncargadoService;
-import com.sample.core.service.encargado.EncargadoServiceImpl;
+import domain.Vendedor;
+import com.sample.core.service.encargado.VendedorService;
+import com.sample.core.service.encargado.VendedorServiceImpl;
 
 @WebServlet(urlPatterns = "/LoadEncargadoForm")
-public class LoadEncargadoForm extends HttpServlet {
+public class LoadVendedorForm extends HttpServlet {
 
-	private EncargadoService encargadoService = new EncargadoServiceImpl();
+	private VendedorService encargadoService = new VendedorServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
