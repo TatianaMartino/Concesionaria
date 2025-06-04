@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sample.core.dao.config.Conexion;
-import com.sample.core.service.encargado.VendedorService;
-import com.sample.core.service.encargado.VendedorServiceImpl;
+import com.sample.core.service.vendedor.VendedorService;
+import com.sample.core.service.vendedor.VendedorServiceImpl;
 
 @WebServlet(urlPatterns = "/CrearEncargado")
 public class VendedorController extends HttpServlet { // hereda de HttpServlet, lo que le permite manejar solicitudes
