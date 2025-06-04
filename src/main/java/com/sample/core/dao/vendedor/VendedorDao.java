@@ -11,4 +11,3 @@ public interface VendedorDao{
 	public void save(String nombre, String apellido, String usuario, String contra, String correo, int idSucursal) throws Exception;
 
 }
-
