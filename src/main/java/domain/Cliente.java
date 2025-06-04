@@ -67,19 +67,19 @@ public class Cliente {
 		this.dni = dni;
 	}
 
-	public String getCodigo_postal() {
+	public String getCodigoPostal() {
 		return codigo_postal;
 	}
 
-	public void setCodigo_postal(String codigo_postal) {
+	public void setCodigoPostal(String codigo_postal) {
 		this.codigo_postal = codigo_postal;
 	}
 
-	public String getDato_tarjeta() {
+	public String getDatoTarjeta() {
 		return dato_tarjeta;
 	}
 
-	public void setDato_tarjeta(String dato_tarjeta) {
+	public void setDatoTarjeta(String dato_tarjeta) {
 		this.dato_tarjeta = dato_tarjeta;
 	}
 
