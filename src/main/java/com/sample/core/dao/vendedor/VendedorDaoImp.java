@@ -1,4 +1,4 @@
-package com.sample.core.dao.encargado;
+package com.sample.core.dao.vendedor;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sample.core.dao.config.Conexion;
-import domain.Encargado;
+import domain.Vendedor;
 import com.sample.core.exceptions.ErrorException;
 
-public class EncargadoDaoImp implements EncargadoDao {
+public class VendedorDaoImp implements VendedorDao {
 	private Conexion conexion = Conexion.getInstance();
 
 	private static final String queryList = "SELECT id,nombre,apellido,usuario,contrasena,correo, id_sucursal FROM Encargado";
@@ -18,17 +18,17 @@ public class EncargadoDaoImp implements EncargadoDao {
 	private static final String queryAddEncargado = "INSERT INTO Encargado (nombre, apellido, usuario, contrasena, correo, id_sucursal) VALUES (?,?,?,?,?,?)";
 
 	@Override
-	public List<Encargado> list() throws Exception {
+	public List<Vendedor> list() throws Exception {
 		ResultSet rs = null;
-		List<Encargado> encargados = null;
-		Encargado encargado = null;
+		List<Vendedor> encargados = null;
+		Vendedor encargado = null;
 		PreparedStatement st = null;
 		try {
 			st = conexion.dameConnection().prepareStatement(queryList);
 			rs = st.executeQuery();
-			encargados = new ArrayList<Encargado>();
+			encargados = new ArrayList<Vendedor>();
 			while (rs.next()) {
-				encargado = new Encargado(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+				encargado = new Vendedor(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(6), rs.getInt(7));
 				encargados.add(encargado);
 			}

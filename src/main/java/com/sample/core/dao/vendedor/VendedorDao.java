@@ -1,12 +1,12 @@
-package com.sample.core.dao.encargado;
+package com.sample.core.dao.vendedor;
 
 import java.util.List;
 
-import domain.Encargado;
+import domain.Vendedor;
 
-public interface EncargadoDao{
+public interface VendedorDao{
 	
-	public List<Encargado> list() throws Exception;
+	public List<Vendedor> list() throws Exception;
 	
 	public void save(String nombre, String apellido, String usuario, String contra, String correo, int idSucursal) throws Exception;
 
