@@ -1,6 +1,6 @@
 package domain;
 
-public class Encargado {
+public class Vendedor {
 
 	private int id;
 	private String nombre;
@@ -10,7 +10,7 @@ public class Encargado {
 	private String correo;
 	private int idsucursal;
 
-	public Encargado(int id, String nombre, String apellido, String usuario, String contrasena, String correo,
+	public Vendedor(int id, String nombre, String apellido, String usuario, String contrasena, String correo,
 			int idsucursal) {
 		super();
 		this.id = id;
