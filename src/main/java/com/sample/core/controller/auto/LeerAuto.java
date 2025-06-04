@@ -21,6 +21,8 @@ import com.sample.core.service.AutoServiceImpl;
 
 public class LeerAuto extends HttpServlet {
 
+	/*Este servlet consulta todos los autos guardados en la base de datos y los pasa al home.jsp*/
+	
 	private static final long serialVersionUID = 1L;
 	AutoService AutoService = new AutoServiceImpl();
 
