@@ -22,11 +22,9 @@ public class ClienteDaoImp implements ClienteDao {
 	private static final String queryAddCliente = "INSERT INTO cliente (nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono) VALUES (?,?,?,?,?,?,?)";
 
 	private static final String queryList = "SELECT id, nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono FROM cliente";
-	
+
 	private static final String queryConsultarCliente = "SELECT id, nombre, apellido, correo, dni, codigo_postal, dato_tarjeta, telefono FROM cliente where id=?";
 
-
-	
 	@Override
 	public List<Cliente> listarCliente() throws Exception {
 
@@ -40,7 +38,8 @@ public class ClienteDaoImp implements ClienteDao {
 			rs = st.executeQuery();
 			clientes = new ArrayList<Cliente>();
 			while (rs.next()) {
-				cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+				cliente = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
 				clientes.add(cliente);
 			}
 
@@ -59,7 +58,7 @@ public class ClienteDaoImp implements ClienteDao {
 
 		return clientes;
 	}
-	
+
 	@Override
 	public Cliente consultarCliente(int id) throws Exception {
 		ResultSet rs = null;
@@ -88,6 +87,47 @@ public class ClienteDaoImp implements ClienteDao {
 		return null;
 	}
 
+	@Override
+	public void guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
+			String dato_tarjeta, String telefono) throws Exception {
+		PreparedStatement ps = null;
+		try {
+			// Usar PreparedStatement en lugar de Statement para prevenir inyecciones SQL
+			ps = conexion.dameConnection().prepareStatement(queryAddCliente);
+			ps.setString(1, nombre);
+			ps.setString(2, apellido);
+			ps.setString(3, correo);
+			ps.setString(4, dni);
+			ps.setString(5, codigo_postal);
+			ps.setString(6, dato_tarjeta);
+			ps.setString(7, telefono);
+
+			// Desactivar auto commit para manejo transaccional
+			ps.getConnection().setAutoCommit(false);
+
+			ps.executeUpdate();
+
+			// Confirmar la transacción
+			ps.getConnection().commit();
+		} catch (SQLException e) {
+			if (ps != null) {
+				try {
+					ps.getConnection().rollback();
+				} catch (SQLException rollbackEx) {
+					rollbackEx.printStackTrace();
+				}
+			}
+			throw new SQLException("Error al guardar el cliente: " + e.getMessage(), e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 	private void finalizarConexion(PreparedStatement st) {
 		try {
@@ -97,13 +137,6 @@ public class ClienteDaoImp implements ClienteDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void guardar_datos(String nombre, String apellido, String correo, String dni, String codigo_postal,
-			String dato_tarjeta, String telefono) throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
