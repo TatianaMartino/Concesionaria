@@ -72,6 +72,7 @@ public class AutoController extends HttpServlet {
 			obj.addProperty("mensaje", "Se creo exitosamente el registro");
 			out.print(obj.toString());
 			out.flush();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,13 +117,13 @@ public class AutoController extends HttpServlet {
 
 		        try {
 		            AutoService.CambiarDisponibilidad(Id, disponibilidad);
+		            req.getRequestDispatcher("/LeerAuto").forward(req, resp);
+
 
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al actualizar estado");
-		        }
-		        
-		        resp.sendRedirect(req.getContextPath() + "/LeerAuto"); 
+		        } 
 
 		    }
 		 
