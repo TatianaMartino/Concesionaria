@@ -27,7 +27,7 @@
 
 <br>
 <section>
-    <% 
+<% 
     List<Auto> autos = (List<Auto>) request.getAttribute("autos");
     if (autos != null && !autos.isEmpty()) {
         for (Auto auto : autos) {
@@ -47,9 +47,7 @@
        <% if ("RESERVADO".equalsIgnoreCase(auto.getDisponibilidad())) { %>
     <a class="btn btn-warning" href="<%=request.getContextPath()%>/actualizarEstadoAuto?autoId=<%=auto.getId()%>&accion=cancelar">Cancelar reserva</a>
       <% } else { %>
-    <a class="btn btn-primary" href="<%=request.getContextPath()%>/actualizarEstadoAuto?autoId=<%=auto.getId()%>&accion=reservar">Reservar Auto</a>
-      <% } %>
-    	<a class="btn btn-primary" href="<%=request.getContextPath()%>/datosCliente.jsp?id=<%=auto.getId()%>">Comprar Auto</a>
+    <a class="btn btn-primary" href="<%=request.getContextPath()%>/datosCliente.jsp?id=<%=auto.getId()%>">Reservar Auto</a> <% } %>
     </article>
 
     <% 
