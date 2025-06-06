@@ -41,7 +41,14 @@ public class ClienteController extends HttpServlet {
 				int idAUtoParseado = Integer.parseInt(idAuto);
 				Auto auto = autoService.consultarAuto(idAUtoParseado);
 				// para consultar el id del auto que esta reservando el cliente
-
+				
+				//cambiar el estado del auto
+				Disponibilidad disponibilidad = null;
+				 disponibilidad = Disponibilidad.RESERVADO;
+				autoService.CambiarDisponibilidad(idAUtoParseado, disponibilidad);
+				
+				System.out.println("Auto con ID " + idAUtoParseado + " actualizado a estado: " + auto.getDisponibilidad());
+				
 				// Obtener datos del cliente
 				String nombre = req.getParameter("nombre");
 				String apellido = req.getParameter("apellido");
@@ -64,12 +71,13 @@ public class ClienteController extends HttpServlet {
 				cliente.setTelefono(telefono);
 
 				// Crear Pedido
+				
 				Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
 				
 				// Ver datos recibidos del formulario
 				System.out.println("Datos del Pedido");
 				System.out.println("Cliente: " + cliente.getNombre() + "" + cliente.getApellido());
-				System.out.println("Auto: " + auto.getMarca() + "" + auto.getModelo());
+				System.out.println("Auto: " + auto.getMarca() + ", " + auto.getModelo() + "," + auto.getDisponibilidad());
 
 			} else {
 				resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID del auto no proporcionado."); // en caso de que el id este vacio
@@ -79,7 +87,7 @@ public class ClienteController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		resp.sendRedirect(req.getContextPath() + "/home.jsp");  // Redirige al inicio
+		resp.sendRedirect(req.getContextPath() + "/LeerAuto");  // Redirige al inicio
 
 	}
 }
