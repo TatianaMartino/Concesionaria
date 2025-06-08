@@ -10,7 +10,17 @@
 </style>
 <title>Inicio</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/estiloInicio.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+	<script type="text/javascript">
+			var contextPath='<%=request.getContextPath()%>';
+	</script>
+	<script src="<%=request.getContextPath()%>/scripts/eliminarAuto.js"> </script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Agregamos SweetAlert -->
+	
 </head>
+
 <body>
 
 <header>
@@ -48,6 +58,7 @@
     <a class="btn btn-warning" href="<%=request.getContextPath()%>/actualizarEstadoAuto?autoId=<%=auto.getId()%>&accion=cancelar">Cancelar reserva</a>
       <% } else { %>
     <a class="btn btn-primary" href="<%=request.getContextPath()%>/datosCliente.jsp?id=<%=auto.getId()%>">Reservar Auto</a> <% } %>
+    <button class="btn btn-danger" data-id="<%=auto.getId()%>" onclick="myFunction(this)">Eliminar</button>
     </article>
 
     <% 
