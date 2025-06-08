@@ -46,6 +46,10 @@ public class AutoController extends HttpServlet {
 		int precioInt = 0;
 		int sucursalId = 0;
 
+		//Convertir el string recibido desde el formulario al valor del enum,
+		String disponibilidadStr = req.getParameter("disponibilidad");
+		Disponibilidad disponibilidadEnum = Disponibilidad.valueOf(disponibilidadStr);
+		
 		// Convertir los valores de String a int
 		precioInt = Integer.parseInt(precioString);
 		stockInt = Integer.parseInt(stockString);
@@ -59,10 +63,10 @@ public class AutoController extends HttpServlet {
 		System.out.println("stock: " + stockString);
 		System.out.println("precio: " + precioString);
 		System.out.println("sucursal id: " + sucursalId);
-		System.out.println("Disponibilidad: " + disponibilidad);
+		System.out.println("Disponibilidad: " + disponibilidadEnum);
 
 		try {
-			AutoService.crearAuto(modelo, marca, descripcion, stockInt, precioInt, sucursalId, disponibilidad);
+			AutoService.crearAuto(modelo, marca, descripcion, stockInt, precioInt, sucursalId, disponibilidadEnum);
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("utf-8");
