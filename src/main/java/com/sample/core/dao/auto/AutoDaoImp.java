@@ -112,14 +112,13 @@ public class AutoDaoImp implements AutoDao {
 	}
 
 	@Override
-	public void save(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id,
-			String disponibilidad) throws Exception {
+	public void save(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, Disponibilidad disponibilidad) throws Exception {
 
 		// Verificar si la sucursal existe
 		if (!existeSucursal(sucursal_id)) {
 			throw new SQLException("La sucursal con id " + sucursal_id + " no existe.");
 		}
-
+		
 		PreparedStatement ps = null;
 		try {
 			// Usar PreparedStatement en lugar de Statement para prevenir inyecciones SQL
@@ -130,7 +129,7 @@ public class AutoDaoImp implements AutoDao {
 			ps.setInt(4, stock);
 			ps.setInt(5, precio);
 			ps.setInt(6, sucursal_id);
-			ps.setString(7, disponibilidad);
+			ps.setString(7, disponibilidad.name());  // Convierte enum a String
 
 			// Desactivar auto commit para manejo transaccional
 			ps.getConnection().setAutoCommit(false);
@@ -158,6 +157,48 @@ public class AutoDaoImp implements AutoDao {
 			}
 		}
 	}
+		
+		
+		/*Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+		    conn = conexion.dameConnection();
+		    conn.setAutoCommit(false);
+		    
+			// Usar PreparedStatement en lugar de Statement para prevenir inyecciones SQL
+			ps = conexion.dameConnection().prepareStatement(queryAddAuto);
+			ps.setString(1, modelo);
+			ps.setString(2, marca);
+			ps.setString(3, descripcion);
+			ps.setInt(4, stock);
+			ps.setInt(5, precio);
+			ps.setInt(6, sucursal_id);
+			ps.setString(7, disponibilidad.name());  // Convierte enum a String
+			ps.executeUpdate();
+
+			 conn.commit();
+			 System.out.println("Se creo el auto.");
+		} catch (SQLException e) {
+			 if (conn != null) {
+			        try {
+			            conn.rollback();
+			        } catch (SQLException rollbackEx) {
+			            rollbackEx.printStackTrace();
+			        }
+			}
+			throw new SQLException("Error al guardar el auto: " + e.getMessage(), e);
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	*/
 
 	@Override
 	public void delete(int id) throws Exception {
