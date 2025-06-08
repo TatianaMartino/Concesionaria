@@ -25,7 +25,6 @@ public class AutoEliminar extends HttpServlet {
 		
 		String id = req.getParameter("id");
 		
-		//System.out.println("AutoEliminar - Entró al servlet");
 		System.out.println("ID recibido: " + id);
 			
         if (id == null || id.trim().isEmpty()) {
