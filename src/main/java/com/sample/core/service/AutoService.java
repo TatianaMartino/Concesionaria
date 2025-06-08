@@ -11,7 +11,7 @@ public interface AutoService {
 	
 	public Auto consultarAuto(int id) throws Exception;
 	
-	public void crearAuto(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, String disponibilidad) throws Exception;
+	public void crearAuto(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, Disponibilidad disponibilidad) throws Exception;
 	
 	public void delete(int id) throws Exception;
 	
