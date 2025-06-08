@@ -46,6 +46,7 @@ public class ClienteController extends HttpServlet {
 				Disponibilidad disponibilidad = null;
 				 disponibilidad = Disponibilidad.RESERVADO;
 				autoService.CambiarDisponibilidad(idAUtoParseado, disponibilidad);
+				auto = autoService.consultarAuto(idAUtoParseado);
 				
 				System.out.println("Auto con ID " + idAUtoParseado + " actualizado a estado: " + auto.getDisponibilidad());
 				
