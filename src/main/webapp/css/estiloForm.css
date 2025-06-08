@@ -34,7 +34,8 @@ label {
 
 input[type="text"],
 input[type="email"],
-input[type="number"] {
+input[type="number"],
+select.form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -57,4 +58,18 @@ button{
 
 button:hover {
     background-color: #d90429;
+}
+
+
+.is-invalid {
+  border: 2px solid #e74c3c;
+  background-color: #ffe6e6;
+}
+
+.invalid-feedback {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 4px;
+  display: block;
 }
