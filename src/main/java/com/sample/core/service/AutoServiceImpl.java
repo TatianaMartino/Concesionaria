@@ -39,5 +39,10 @@ public class AutoServiceImpl implements AutoService {
 		AutoDao.CambiarEstado(id, disponibilidadAuto);
 	}
 
-
+	@Override
+	public List<Auto> listarAutosReservados() throws Exception {
+		return AutoDao.listarAutosReservados();
+	}
+	
+	
 }
