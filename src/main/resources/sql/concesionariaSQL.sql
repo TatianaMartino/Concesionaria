@@ -52,8 +52,15 @@ CREATE TABLE cliente (
   codigo_postal varchar(20) DEFAULT NULL,
   dato_tarjeta varchar(20) DEFAULT NULL,
   telefono varchar(20) DEFAULT NULL
-) 
+);
 
+CREATE TABLE `reserva` (
+  `id` int(11) NOT NULL,
+  `idAuto` int(11) NOT NULL,
+  `cliente` int(11) NOT NULL,
+  `monto` int(100) NOT NULL,
+  `situacion` varchar(500) NOT NULL
+);
 --
 -- Indices de la tabla `cliente`
 --
