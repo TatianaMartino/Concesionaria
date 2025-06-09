@@ -30,6 +30,7 @@
     </div>
      <div class="header-bottom">
         <a class="btn btn-primary" href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a>
+        <a class="btn btn-secondary" href="<%=request.getContextPath()%>/autosReservados">Autos Reservados</a>
     </div>
 </header>
 
