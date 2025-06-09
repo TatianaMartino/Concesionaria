@@ -31,7 +31,7 @@
 </head>
 <body>
 
-	<form class="form" id="formAuto">
+	<form class="form" id="formAuto" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="modelo">Modelo:</label> <input type="text"
 				class="form-control" id="modelo" required name="modelo"
@@ -49,11 +49,12 @@
 				class="form-control" id="descripcion" required name="descripcion"
 				aria-describedby="emailHelp" placeholder="Ingrese una descripcion">
 		</div>
-		
+	
 		<div class="form-group">
-			<label for="stock">Stock:</label> <input type="text"
-				class="form-control" id="stock" required name="stock"
-				aria-describedby="emailHelp" placeholder="Ingrese el stock">
+			<label for="stock">Stock:</label>
+			<select id="stock" required name="stock" class="form-control">
+        		<option value="1">1</option>
+        	</select>
 		</div>
 
 		<div class="form-group">
@@ -73,9 +74,14 @@
 		<div class="form-group"> 
 			<label for="disponibilidad">Seleccione disponibilidad:</label>
   		  	<select id="disponibilidad" name="disponibilidad" class="form-control">
-        		<option value="Disponible">DISPONIBLE</option>
+        		<option value="DISPONIBLE">DISPONIBLE</option>
     		</select>
     	</div>
+    	
+    	<!--  <div class="form-group">
+    	   <label for="imagen">Inserte una imagen del auto:</label>
+    	   <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+    	</div> -->
     		
 	<button type="button" class="btn btn-primary" id="btn-confirmar">Submit</button> <!-- lleva al agregarAuto.js para crear un auto -->
 	</form>
@@ -83,6 +89,8 @@
 </body>
 </html>
 
+
+<!-- JQUERY VALIDATION -->
 <script>
 $(document).ready(function () {
 	//define las reglas que tiene que tener para que el ingreso sea valido
@@ -100,10 +108,6 @@ $(document).ready(function () {
         required: true,
         minlength: 10
       },
-      stock: {
-        required: true,
-        digits: true
-      },
       precio: {
         required: true,
         number: true
@@ -117,28 +121,21 @@ $(document).ready(function () {
     },
     messages: {
       modelo: {
-        required: "Por favor ingrese un modelo",
+        required: "Por favor, ingrese un modelo",
         minlength: "El modelo debe tener al menos 2 caracteres"
       },
       marca: {
-        required: "Por favor ingrese una marca",
+        required: "Por favor, ingrese una marca",
         minlength: "La marca debe tener al menos 2 caracteres"
       },
       descripcion: {
-        required: "Por favor ingrese una descripción",
+        required: "Por favor, ingrese una descripción",
         minlength: "La descripción debe tener al menos 10 caracteres"
       },
-      stock: {
-        required: "Por favor ingrese el stock",
-        digits: "Solo se permiten números enteros"
-      },
       precio: {
-        required: "Por favor ingrese un precio",
+        required: "Por favor, ingrese un precio",
         number: "Ingrese un valor numérico válido"
-      },
-      sucursal_id: {
-        required: "Seleccione una sucursal"
-      },
+      }
     },
     errorElement: "div", //coloca el error en cada div
     errorClass: "invalid-feedback", 
