@@ -4,5 +4,6 @@ public enum Disponibilidad {
 
 	DISPONIBLE,
 	RESERVADO,
-	COMPRADO	
+	COMPRADO,
+	INEXISTENTE
 }
