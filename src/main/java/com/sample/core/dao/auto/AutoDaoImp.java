@@ -19,7 +19,7 @@ public class AutoDaoImp implements AutoDao {
 
 	private Conexion conexion = Conexion.getInstance();
 
-	private static final String queryAddAuto = "INSERT INTO autos (modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad) VALUES (?,?,?,?,?,?,?)";
+	private static final String queryAddAuto = "INSERT INTO autos (modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad, stockBase) VALUES (?,?,?,?,?,?,?,?)";
 
 	private static final String queryList = "SELECT id, modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad FROM autos";
 
@@ -27,16 +27,13 @@ public class AutoDaoImp implements AutoDao {
 
 	private static final String querydeleteAuto = "DELETE FROM autos WHERE id = ?";
 
-	private static final String queryCambiarEstadoAuto = "UPDATE autos set disponibilidad = ? where id = ?";
+	private static final String queryUpdateEstadoStockAuto = "UPDATE autos SET disponibilidad = ?, stock = ? WHERE id = ?";
 
 	private static final String querylistarReservado = "SELECT id, modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad FROM autos WHERE disponibilidad = 'RESERVADO'";
 
-    private static final String queryCheck = "SELECT stock, disponibilidad FROM autos WHERE id = ?";
-    
-    private static final String update = "UPDATE autos SET disponibilidad = ?, stock = ? WHERE id = ?";
-
-
+	private static final String queryCheck = "SELECT stock, stockbase, disponibilidad FROM autos WHERE id = ?";
 	
+
 	// verifica si existe una sucursal en la base de datos con un determinado id.
 	private boolean existeSucursal(int sucursalId) throws SQLException {
 		String query = "SELECT COUNT(*) FROM sucursal WHERE id = ?"; // Count es para contar las filas que hay en la
@@ -147,7 +144,7 @@ public class AutoDaoImp implements AutoDao {
 
 	@Override
 	public void save(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id,
-			Disponibilidad disponibilidad) throws Exception {
+			Disponibilidad disponibilidad, int stockBase) throws Exception {
 
 		// Verificar si la sucursal existe
 		if (!existeSucursal(sucursal_id)) {
@@ -165,6 +162,7 @@ public class AutoDaoImp implements AutoDao {
 			ps.setInt(5, precio);
 			ps.setInt(6, sucursal_id);
 			ps.setString(7, disponibilidad.name()); // Convierte enum a String
+			ps.setInt(8, stockBase);
 
 			// Desactivar auto commit para manejo transaccional
 			ps.getConnection().setAutoCommit(false);
@@ -228,62 +226,51 @@ public class AutoDaoImp implements AutoDao {
 
 	public void CambiarEstado(int id, Disponibilidad disponibilidadAuto) throws Exception {
 
-		 PreparedStatement ps = null;
-		 ResultSet rs = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		try {
-			ps = conexion.dameConnection().prepareStatement(queryCambiarEstadoAuto);
+			ps = conexion.dameConnection().prepareStatement(queryCheck);
 			ps.setString(1, disponibilidadAuto.name());
-			ps.setInt(2, id);
-			ps.executeUpdate();
-			
-			
-			/* // Obtener stock actual y disponibilidad actual del auto
-	        ps = conexion.dameConnection().prepareStatement(queryCheck);
-	        ps.setInt(1, id);
-	        ps.setString(2, disponibilidadAuto.name());
-	        rs = ps.executeQuery();
-	        
-	        if (!rs.next()) {
-	            throw new Exception("Auto con ID " + id + " no encontrado.");
-	        }
-	        
-	        int stock = rs.getInt("stock");
-	        String disponibilidadActualStr = rs.getString("disponibilidad");
-	        Disponibilidad disponibilidadActual = Disponibilidad.valueOf(disponibilidadActualStr);
-	        
-	        
-	     // Lógica según estado
-	        //comparara el estado actual en base de datos y el estado nuevo
-	        if (disponibilidadActual == Disponibilidad.DISPONIBLE && disponibilidadAuto == Disponibilidad.RESERVADO) {
-	            // Reserva → descontar stock
-	            if (stock == 0) {
-	                throw new Exception("No se puede reservar: stock agotado.");
-	            }
-	            stock--;
-	                  
-	            }else if (disponibilidadActual == Disponibilidad.RESERVADO && disponibilidadAuto == Disponibilidad.DISPONIBLE) {
-	                // Cancelación de reserva → aumentar stock
-	                stock++;
-	            }
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
 
-	            // COMPRADO e INEXISTENTE no modifican el stock
-			
-	        // Actualizar disponibilidad y stock
-	        ps = conexion.dameConnection().prepareStatement(update);
-	        ps.setString(1, disponibilidadAuto.name());
-	        ps.setInt(2, stock);
-	        ps.setInt(3, id);
-	        ps.executeUpdate();
-	        
-	        */
+			if (!rs.next()) {
+				throw new Exception("Auto con ID " + id + " no encontrado.");
+			}
 
-		} catch (SQLException e) {
-			e.printStackTrace(); // imprime el error
-		} finally {
+			int stock = rs.getInt("stock");
+			int stockbase = rs.getInt("stockbase");
+			rs.close();
 			ps.close();
 
+			// Modificar stock según estado
+			if (disponibilidadAuto == Disponibilidad.RESERVADO) {
+				if (stock <= 0) {
+					throw new Exception("No se puede reservar: stock agotado.");
+				}
+				stock--; // reserva → descuenta stock
+			} else if (disponibilidadAuto == Disponibilidad.DISPONIBLE) {
+				if (stock < stockbase) { // Solo suma si el stock es menor al stockbase
+					stock++; // libera → suma stock pero no más que stockbase
+				} // COMPRADO e INEXISTENTE no modifican stock
+			}
+
+			// Actualizar estado y nuevo stock
+			ps = conexion.dameConnection().prepareStatement(queryUpdateEstadoStockAuto);
+			ps.setString(1, disponibilidadAuto.name());
+			ps.setInt(2, stock);
+			ps.setInt(3, id);
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new Exception("Error al cambiar estado del auto", e);
+		} finally {
+			if (rs != null)
+				rs.close();
+			if (ps != null)
+				ps.close();
 		}
-	};
+	}
 
 	private void finalizarConexion(Statement st) {
 		try {
