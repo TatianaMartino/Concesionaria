@@ -6,9 +6,9 @@ import domain.Vendedor;
 
 public interface VendedorService {
 
-	public List<Vendedor> listarEncargado() throws Exception; // crear una lista
-
-	public void crearEncargado(String nombre, String apellido, String usuario, String contrasena, String correo,
-			int idsucursal) throws Exception; // crear un metodo
+	public void existeVendedor(String usuario) throws Exception;
+	
+	public void existeVendedoryPassword(String usuario, String password) throws Exception;
+	
 
 }

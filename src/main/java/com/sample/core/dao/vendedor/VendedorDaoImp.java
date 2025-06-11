@@ -1,6 +1,7 @@
 package com.sample.core.dao.vendedor;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,6 +18,13 @@ public class VendedorDaoImp implements VendedorDao {
 
 	private static final String queryAddEncargado = "INSERT INTO Encargado (nombre, apellido, usuario, contrasena, correo, id_sucursal) VALUES (?,?,?,?,?,?)";
 
+	private static final String queryFindByUser = "SELECT id, usuario, password FROM encargado where usuario = ?";
+
+	private static final String queryFindByUserAndPassword = "SELECT id, usuario, password FROM encargado where usuario = ? and password = ?";
+	
+	private static final String queryConsultarUsuario = "SELECT id, usuario, contrasena FROM encargado where id=?";
+	
+	
 	@Override
 	public List<Vendedor> list() throws Exception {
 		ResultSet rs = null;
@@ -66,12 +74,79 @@ public class VendedorDaoImp implements VendedorDao {
 
 	private void finalizarConexion(PreparedStatement st) {
 		try {
-			if (st != null)
-				st.close();
+			if(st != null)st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public void existeVendedor(String usuario) throws Exception {
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			st = this.conexion.dameConnection().prepareStatement(queryFindByUser);
+			
+			st.setString(1, usuario);
+			
+			rs = st.executeQuery();
+			boolean encontro = rs.next();
+
+			if (!encontro) {
+				throw new Exception("El usuario " + usuario +"no exite en DB");
+			}
+		} catch (Exception e) {
+			throw new Exception("No existe el usuario");
+		} finally {
+			st.close();
+			rs.close();
+		}
+		
+	
+	}
+
+	public void existeVendedorPassword(String usuario, String password) throws Exception {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			st = this.conexion.dameConnection().prepareStatement(queryFindByUserAndPassword);
+			
+			st.setString(1, usuario);
+			st.setString(2, password);
+
+			rs = st.executeQuery();
+			boolean encontro = rs.next();
+
+			if (!encontro) {
+				throw new Exception("El usuario " + usuario +" no coincide con la password");
+			}
+		} catch (Exception e) {
+			throw new Exception("login incorrecto");
+		} finally {
+			st.close();
+			rs.close();
+		}
+				
+	}
+
+	public void agregarReintento(String usuario) throws Exception {
+
+
+	
+	}
+
+	@Override
+	public void existeUsuario(String usuario) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void existeUsuarioPassword(String usuario, String password) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

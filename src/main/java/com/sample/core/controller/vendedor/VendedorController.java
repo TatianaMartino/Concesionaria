@@ -1,6 +1,7 @@
 package com.sample.core.controller.vendedor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -9,27 +10,30 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.google.gson.JsonObject;
 import com.sample.core.dao.config.Conexion;
 import com.sample.core.service.vendedor.VendedorService;
 import com.sample.core.service.vendedor.VendedorServiceImpl;
 
-@WebServlet(urlPatterns = "/CrearEncargado")
+@WebServlet(urlPatterns = "/Ingresar" )
 public class VendedorController extends HttpServlet { // hereda de HttpServlet, lo que le permite manejar solicitudes
 														// HTTP.
 
 	VendedorService encargadoService = new VendedorServiceImpl();
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// Obtener datos del formulario en index
 		// dentro de getParameter, cada parametro debe ser igual a los atributos "name"
 		// de las etiquetas input del formulario
 
-		String nombre = req.getParameter("nombre");
+		/*String nombre = req.getParameter("nombre");
 		String apellido = req.getParameter("apellido");
 		String usuario = req.getParameter("usuario");
 		String contra = req.getParameter("contra");
@@ -60,11 +64,53 @@ public class VendedorController extends HttpServlet { // hereda de HttpServlet, 
 			 * RequestDispatcher dispatcher = req.getRequestDispatcher("/LeerDatosBebidas");
 			 */
 			/* dispatcher.forward(req, resp); */
-
+/*
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}*/
+		
+		String usuario = req.getParameter("usuario");
+		String password = req.getParameter("password");		
+		
+		try {
+			
+			if (usuario.length()== 0 || usuario == null)
+				throw new Exception("usuario vacio");
+			
+			if (password.length()== 0 || password == null)
+				throw new Exception("password vacio");
+					
+			encargadoService.existeVendedor(usuario);
+			
+			
+			encargadoService.existeVendedoryPassword(usuario, password);
+			
+			HttpSession jsession = req.getSession(true);
+			jsession.setAttribute("CURRENT_USER", usuario);
+			resp.addCookie(new Cookie("JSESSIONID", jsession.getId()));
+
+			setOutResponse("se logeo corretamente", resp, 200, "ok");
+
+		} catch (Exception e) {
+			setOutResponse(e.getMessage(), resp, 400, "error");
 		}
+
+	}
+	
+	private void setOutResponse(String mensaje,HttpServletResponse resp, int code, String status) throws IOException {
+		 PrintWriter out = resp.getWriter();
+		 resp.setContentType("application/json");
+		 resp.setCharacterEncoding("utf-8");
+		 JsonObject obj = new JsonObject();
+		 resp.setStatus(code);
+		 obj.addProperty("estatus", status);
+		 obj.addProperty("mensaje",mensaje);
+		 out.print(obj.toString());
+		 out.flush();
+	}
+		
+		
+		
 	}
 
-}
