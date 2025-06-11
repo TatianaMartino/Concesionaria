@@ -31,7 +31,7 @@
 </head>
 <body>
 
-	<form class="form" id="formAuto" enctype="multipart/form-data">
+	<form class="form" id="formAuto" enctype="form-data">
 		<div class="form-group">
 			<label for="modelo">Modelo:</label> <input type="text"
 				class="form-control" id="modelo" required name="modelo"
@@ -77,11 +77,7 @@
         		<option value="DISPONIBLE">DISPONIBLE</option>
     		</select>
     	</div>
-    	
-    	<!--  <div class="form-group">
-    	   <label for="imagen">Inserte una imagen del auto:</label>
-    	   <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
-    	</div> -->
+   
     		
 	<button type="button" class="btn btn-primary" id="btn-confirmar">Submit</button> <!-- lleva al agregarAuto.js para crear un auto -->
 	</form>
