@@ -39,7 +39,7 @@ UPDATE sucursal SET encargado_id = 1 WHERE id = 1;
 
 INSERT INTO sucursal (direccion, codigo_postal, encargado_id) VALUES ('Güemes 4791 Cdad. Autónoma de Buenos Aires', 1425, NULL);
 
-INSERT INTO encargado (nombre, apellido, usuario, contrasena, id_sucursal, correo) VALUES ('Marcos0', 'Rodriguez', 'MarcosRodriguez', 'ghtd12', 2, 'rodriguezMarc@gmail.com');
+INSERT INTO encargado (nombre, apellido, usuario, contrasena, id_sucursal, correo) VALUES ('Marcos', 'Rodriguez', 'MarcosRodriguez', 'ghtd12', 2, 'rodriguezMarc@gmail.com');
 
 UPDATE sucursal SET encargado_id = 2 WHERE id = 2;
 
