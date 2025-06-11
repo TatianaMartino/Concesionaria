@@ -7,7 +7,7 @@ import utils.Disponibilidad;
 
 public interface AutoDao {
 
-	public void save(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, Disponibilidad disponibilidad) throws Exception;
+	public void save(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, Disponibilidad disponibilidad, int stockBase) throws Exception;
 	
 	public List<Auto> listarAutos() throws Exception;
 	
