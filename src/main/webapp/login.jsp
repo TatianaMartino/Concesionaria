@@ -3,19 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+</style>
+
+<title>Iniciar Sesion</title>
+<link rel="stylesheet" href="css/estiloLogin.css">
 
 <script src="<%=request.getContextPath()%>/scripts/jquery/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
 
 <script type="text/javascript">
-			var contextPath='<%=request.getContextPath()%>
-	';
+			var contextPath = '<%=request.getContextPath()%>';
 </script>
-<script src="<%=request.getContextPath()%>/scripts/login.js"></script>
-<meta charset="UTF-8">
 
-<title>Iniciar Sesion</title>
+<script src="<%=request.getContextPath()%>/scripts/login.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Sweet Alert -->
+
 </head>
 <body>
 
