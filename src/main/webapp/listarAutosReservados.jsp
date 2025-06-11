@@ -46,7 +46,7 @@
         </div>
     <%
         } else {
-    %>s
+    %>
 
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
