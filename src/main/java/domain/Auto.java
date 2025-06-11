@@ -10,6 +10,7 @@ public class Auto {
 	private int precio;
 	private int sucursal_id;
 	private String disponibilidad;
+	private int stockBase = 0;
 	
 	public Auto(String id, String modelo, String marca, String descripcion,int stock, int precio, int sucursal_id, String disponibilidad) {
 		super();
@@ -86,6 +87,14 @@ public class Auto {
 
 	public void setDisponibilidad(String disponibilidad) {
 		this.disponibilidad = disponibilidad;
+	}
+
+	public int getStockBase() {
+		return stockBase;
+	}
+
+	public void setStockBase(int stockBase) {
+		this.stockBase = stockBase;
 	}
 
 	
