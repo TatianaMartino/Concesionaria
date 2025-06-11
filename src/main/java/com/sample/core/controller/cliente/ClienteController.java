@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sample.core.service.AutoService;
 import com.sample.core.service.AutoServiceImpl;
@@ -16,6 +17,7 @@ import com.sample.core.service.cliente.ClienteServiceImp;
 import domain.Auto;
 import domain.Cliente;
 import domain.Pedido;
+import domain.Vendedor;
 import utils.Disponibilidad;
 import utils.SituacionPedidos;
 
@@ -28,8 +30,21 @@ public class ClienteController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		try {
+		
+		//provisorio hasta que este la partede login
+		HttpSession session =  req.getSession(true);
+		Vendedor vendedor = new Vendedor(1, "", "", "", "","" , 1);
+		session.setAttribute("CURRENT_USER", vendedor );
+		//fin provisorio
+		
+		//Llamando al vendedor
+		Vendedor vendedor2 = (Vendedor) session.getAttribute("CURRENT_USER");
+		if (vendedor2 == null) {
+			//Aca si el vendedor es nulo tiene que tirar error y va a redirig a otro lado.
+			//Si sale esto no puede iniciar sesion
+			//Hay que hacerlo en todos los controller
+		}
+		 try {
 
 			Cliente cliente = new Cliente();
 
@@ -41,6 +56,18 @@ public class ClienteController extends HttpServlet {
 				int idAUtoParseado = Integer.parseInt(idAuto);
 				Auto auto = autoService.consultarAuto(idAUtoParseado);
 				// para consultar el id del auto que esta reservando el cliente
+				
+				if (auto.getSucursal_id()== vendedor.getIdsucursal()) {
+					
+					
+					
+					
+					
+					
+						
+				}
+				
+				
 				
 				//cambiar el estado del auto
 				Disponibilidad disponibilidad = null;
@@ -71,6 +98,12 @@ public class ClienteController extends HttpServlet {
 				cliente.setDatoTarjeta(dato_tarjeta);
 				cliente.setTelefono(telefono);
 
+				
+				
+				
+				
+				
+				
 				// Crear Pedido
 				
 				Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
@@ -80,6 +113,9 @@ public class ClienteController extends HttpServlet {
 				System.out.println("Cliente: " + cliente.getNombre() + "" + cliente.getApellido());
 				System.out.println("Auto: " + auto.getMarca() + ", " + auto.getModelo() + "," + auto.getDisponibilidad());
 
+				
+				
+				
 			} else {
 				resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID del auto no proporcionado."); // en caso de que el id este vacio
 			}

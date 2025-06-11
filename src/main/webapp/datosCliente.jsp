@@ -11,11 +11,14 @@
 <script src="<%=request.getContextPath()%>/scripts/jquery/jquery.validate.min.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/jquery/localization/messages_es.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Sweet Alert -->
+
 <title>Datos del Cliente</title>
 <link rel="stylesheet" href="css/estiloForm.css">
 </head>
 <body>
-	<form class="form" id="formCliente" action="<%=request.getContextPath()%>/GuardarDatosCliente" method="post">
+	 <form class="form" id="formCliente" action="<%=request.getContextPath()%>/GuardarDatosCliente" method="post">
+	<!-- <form class="form" id="formCliente" action="<%=request.getContextPath()%>/CrearCliente" method="post">-->
 	<h1>Ingrese sus datos</h1>
 
 		<input type="hidden" name="id" value="<%=request.getParameter("id")%>" />
