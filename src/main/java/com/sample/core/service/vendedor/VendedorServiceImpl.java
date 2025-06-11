@@ -12,18 +12,17 @@ public class VendedorServiceImpl implements VendedorService {
 	private VendedorDao encargadoDao = new VendedorDaoImp();
 
 	@Override
-	public List<Vendedor> listarEncargado() throws Exception { // utiliza la lista creada en la interaz
-																// EncargadoService
-
-		return encargadoDao.list();
+	public void existeVendedor(String usuario) throws Exception {
+		encargadoDao.existeUsuario(usuario);
 	}
 
 	@Override
-	public void crearEncargado(String nombre, String apellido, String usuario, String contrasena, String correo,
-			int idsucursal) throws Exception { // utiliza el metodo creado en la interaz EncargadoService
-
-		encargadoDao.save(nombre, apellido, usuario, contrasena, correo, idsucursal);
-
+	public void existeVendedoryPassword(String usuario, String password) throws Exception {
+		encargadoDao.existeUsuarioPassword(usuario, password);
 	}
+
+	
+
+
 
 }
