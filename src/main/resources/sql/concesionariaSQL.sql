@@ -28,6 +28,7 @@ stock int,
 precio int,
 sucursal_id int ,
 disponibilidad varchar(25),
+stockBase int,
 FOREIGN KEY (sucursal_id) REFERENCES sucursal(id)
 );
 
