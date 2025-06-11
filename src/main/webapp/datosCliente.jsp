@@ -95,14 +95,14 @@
           digits: true
         },
         dato_tarjeta: {
-          required: true
+          required: true,
           digits: true
         },
         telefono: {
-          required: true,
-          digits: true,
-          minlength: 7,
-          maxlength: 15
+           required: true,
+           digits: true,
+           minlength: 7,
+           maxlength: 15
         }
       },
       messages: {
