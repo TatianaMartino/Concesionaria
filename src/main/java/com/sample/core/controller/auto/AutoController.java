@@ -54,6 +54,8 @@ public class AutoController extends HttpServlet {
 		precioInt = Integer.parseInt(precioString);
 		stockInt = Integer.parseInt(stockString);
 		sucursalId = Integer.parseInt(sucursalIdString);
+		
+		int stockBase = stockInt;
 
 		// Ver datos recibidos del formulario en pantalla de Eclipse
 		// id, modelo, marca, descripcion, precio, sucursal_id, stock, disponibilidad
@@ -66,7 +68,7 @@ public class AutoController extends HttpServlet {
 		System.out.println("Disponibilidad: " + disponibilidadEnum);
 
 		try {
-			AutoService.crearAuto(modelo, marca, descripcion, stockInt, precioInt, sucursalId, disponibilidadEnum);
+			AutoService.crearAuto(modelo, marca, descripcion, stockInt, precioInt, sucursalId, disponibilidadEnum, stockBase);
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("utf-8");
@@ -110,6 +112,7 @@ public class AutoController extends HttpServlet {
 		        Disponibilidad disponibilidad = null;
 		        if ("reservar".equalsIgnoreCase(accion)) {
 		            disponibilidad = Disponibilidad.RESERVADO;
+		            
 		        } else if ("comprar".equalsIgnoreCase(accion)) {
 		            disponibilidad = Disponibilidad.COMPRADO;
 		        } else if ("cancelar".equalsIgnoreCase(accion)) {
