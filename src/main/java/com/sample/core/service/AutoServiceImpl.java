@@ -14,8 +14,8 @@ public class AutoServiceImpl implements AutoService {
 	private AutoDao AutoDao = new AutoDaoImp();
 
 	@Override
-	public void crearAuto(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, Disponibilidad disponibilidad) throws Exception {
-		AutoDao.save(modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad);
+	public void crearAuto(String modelo, String marca, String descripcion, int stock, int precio, int sucursal_id, Disponibilidad disponibilidad, int stockBase) throws Exception {
+		AutoDao.save(modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad, stockBase);
 		
 	}
 
