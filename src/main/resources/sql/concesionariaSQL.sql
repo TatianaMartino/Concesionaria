@@ -5,15 +5,15 @@ create table sucursal(
 id int auto_increment primary key,
 direccion varchar(50),
 codigo_postal int,
-encargado_id int
+vendedor_id int
 );
 
-create table encargado(
+create table vendedor(
 id int auto_increment primary key,
 nombre varchar (25),
 apellido varchar (25),
 usuario varchar (25),
-contrasena varchar (25),
+password varchar (25),
 id_sucursal int,
 correo varchar(25),
 FOREIGN KEY (id_sucursal) REFERENCES sucursal(id)
@@ -32,17 +32,17 @@ stockBase int,
 FOREIGN KEY (sucursal_id) REFERENCES sucursal(id)
 );
 
-INSERT INTO sucursal (direccion, codigo_postal, encargado_id) VALUES ('Av. Rivadavia 6425', 1406, NULL);
+INSERT INTO sucursal (direccion, codigo_postal, vendedor_id) VALUES ('Av. Rivadavia 6425', 1406, NULL);
 
-INSERT INTO encargado (nombre, apellido, usuario, contrasena, id_sucursal, correo) VALUES ('Juan', 'Pérez', 'jnperez', '1234', 1, 'juan@mail.com');
+INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) VALUES ('Juan', 'Pérez', 'jnperez', '1234', 1, 'juan@mail.com');
 
-UPDATE sucursal SET encargado_id = 1 WHERE id = 1;
+UPDATE sucursal SET vendedor_id = 1 WHERE id = 1;
 
-INSERT INTO sucursal (direccion, codigo_postal, encargado_id) VALUES ('Güemes 4791 Cdad. Autónoma de Buenos Aires', 1425, NULL);
+INSERT INTO sucursal (direccion, codigo_postal, vendedor_id) VALUES ('Güemes 4791 Cdad. Autónoma de Buenos Aires', 1425, NULL);
 
-INSERT INTO encargado (nombre, apellido, usuario, contrasena, id_sucursal, correo) VALUES ('Marcos', 'Rodriguez', 'MarcosRodriguez', 'ghtd12', 2, 'rodriguezMarc@gmail.com');
+INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) VALUES ('Marcos', 'Rodriguez', 'MarcosRodriguez', 'ghtd12', 2, 'rodriguezMarc@gmail.com');
 
-UPDATE sucursal SET encargado_id = 2 WHERE id = 2;
+UPDATE sucursal SET vendedor_id = 2 WHERE id = 2;
 
 CREATE TABLE cliente (
   id int(11) NOT NULL,
