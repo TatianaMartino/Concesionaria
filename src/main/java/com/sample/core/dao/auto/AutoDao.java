@@ -18,6 +18,7 @@ public interface AutoDao {
 	public void CambiarEstado(int id, Disponibilidad disponibilidadAuto) throws Exception;
 	
 	public List<Auto> listarAutosReservados() throws Exception;
+	
 
 
 }

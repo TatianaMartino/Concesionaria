@@ -1,8 +1,8 @@
-package com.sample.core.service.pedido;
+package com.sample.core.service.reserva;
 
 import domain.Pedido;
 
-public interface PedidoService {
+public interface ReservaService {
 	
 	public void guardarPedido(Pedido pedido) throws Exception;
 	

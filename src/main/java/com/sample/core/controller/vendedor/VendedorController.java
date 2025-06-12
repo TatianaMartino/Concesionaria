@@ -25,50 +25,10 @@ import com.sample.core.service.vendedor.VendedorServiceImpl;
 public class VendedorController extends HttpServlet { // hereda de HttpServlet, lo que le permite manejar solicitudes
 														// HTTP.
 
-	VendedorService encargadoService = new VendedorServiceImpl();
+	VendedorService vendedorService = new VendedorServiceImpl();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Obtener datos del formulario en index
-		// dentro de getParameter, cada parametro debe ser igual a los atributos "name"
-		// de las etiquetas input del formulario
-
-		/*String nombre = req.getParameter("nombre");
-		String apellido = req.getParameter("apellido");
-		String usuario = req.getParameter("usuario");
-		String contra = req.getParameter("contra");
-		String correo = req.getParameter("correo");
-		String idSucursalString = req.getParameter("idSucursal");
-		int idSucursal = 0;
-
-		// Conventir los valores de String a int
-		try {
-			idSucursal = Integer.parseInt(idSucursalString);
-		} catch (NumberFormatException e) {
-			req.setAttribute("mensajeError", "Error: El valor no es válido");
-	        req.getRequestDispatcher("/loadEncargadoForm").forward(req, resp); //Redirige al formulario de nuevo (/loadAutoForm) para que el usuario corrija el error.
-			return;
-		}
-
-		// Ver datos recibidos del formulario
-		System.out.println("nombre: " + nombre);
-		System.out.println("apellido: " + apellido);
-		System.out.println("usuario: " + usuario);
-		System.out.println("contra: " + contra);
-		System.out.println("correo: " + correo);
-		System.out.println("idSucursal: " + idSucursal);
-
-		try {
-			encargadoService.crearEncargado(nombre, apellido, usuario, contra, correo, idSucursal);
-			/*
-			 * RequestDispatcher dispatcher = req.getRequestDispatcher("/LeerDatosBebidas");
-			 */
-			/* dispatcher.forward(req, resp); */
-/*
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
 		String usuario = req.getParameter("usuario");
 		String password = req.getParameter("password");		
@@ -81,10 +41,11 @@ public class VendedorController extends HttpServlet { // hereda de HttpServlet, 
 			if (password.length()== 0 || password == null)
 				throw new Exception("password vacio");
 					
-			encargadoService.existeVendedor(usuario);
+			vendedorService.existeUsuario(usuario);;
 			
 			
-			encargadoService.existeVendedoryPassword(usuario, password);
+			vendedorService.existeUsuarioPassword(usuario, password);
+			
 			
 			HttpSession jsession = req.getSession(true);
 			jsession.setAttribute("CURRENT_USER", usuario);
@@ -94,6 +55,7 @@ public class VendedorController extends HttpServlet { // hereda de HttpServlet, 
 
 		} catch (Exception e) {
 			setOutResponse(e.getMessage(), resp, 400, "error");
+			
 		}
 
 	}

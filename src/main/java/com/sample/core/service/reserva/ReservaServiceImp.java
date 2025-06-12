@@ -1,8 +1,8 @@
-package com.sample.core.service.pedido;
+package com.sample.core.service.reserva;
 
 import domain.Pedido;
 
-public class PedidoServiceImp implements PedidoService{
+public class ReservaServiceImp implements ReservaService{
 
 	@Override
 	public void guardarPedido(Pedido pedido) throws Exception {

@@ -6,9 +6,9 @@ import domain.Vendedor;
 
 public interface VendedorService {
 
-	public void existeVendedor(String usuario) throws Exception;
-	
-	public void existeVendedoryPassword(String usuario, String password) throws Exception;
+	public void existeUsuario(String usuario) throws Exception;
+
+	public void existeUsuarioPassword(String usuario, String password) throws Exception;
 	
 
 }

@@ -19,11 +19,10 @@ public class VendedorDaoImp implements VendedorDao {
 	private static final String queryFindByUser = "SELECT id, usuario, password FROM vendedor where usuario = ?";
 
 	private static final String queryFindByUserAndPassword = "SELECT id, usuario, password FROM vendedor where usuario = ? and password = ?";
-	
-	private static final String queryConsultarUsuario = "SELECT id, usuario, password FROM vendedor where id=?";
-	
 
-	@Override
+	private static final String queryConsultarUsuario = "SELECT id, usuario, password FROM vendedor where id=?";
+
+	/*@Override
 	public void save(String nombre, String apellido, String usuario, String contra, String correo, int idSucursal)
 			throws Exception {
 
@@ -36,31 +35,21 @@ public class VendedorDaoImp implements VendedorDao {
 		st.setInt(6, idSucursal);
 		st.executeUpdate();
 		finalizarConexion(st);
-	}
-
-	private void finalizarConexion(PreparedStatement st) {
-		try {
-			if(st != null)st.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	public void existeVendedor(String usuario) throws Exception {
-		
+	}*/
+	@Override
+	public void existeUsuario(String usuario) throws Exception {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			
-			st = this.conexion.dameConnection().prepareStatement(queryFindByUser);
-			
+
+			st = conexion.dameConnection().prepareStatement(queryFindByUser);
 			st.setString(1, usuario);
-			
+
 			rs = st.executeQuery();
 			boolean encontro = rs.next();
 
 			if (!encontro) {
-				throw new Exception("El usuario " + usuario +"no exite en DB");
+				throw new Exception("El usuario " + usuario + "no exite en DB");
 			}
 		} catch (Exception e) {
 			throw new Exception("No existe el usuario");
@@ -68,17 +57,16 @@ public class VendedorDaoImp implements VendedorDao {
 			st.close();
 			rs.close();
 		}
-		
-	
 	}
 
-	public void existeVendedorPassword(String usuario, String password) throws Exception {
+	@Override
+	public void existeUsuarioPassword(String usuario, String password) throws Exception {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			
-			st = this.conexion.dameConnection().prepareStatement(queryFindByUserAndPassword);
-			
+
+			st = conexion.dameConnection().prepareStatement(queryFindByUserAndPassword);
+
 			st.setString(1, usuario);
 			st.setString(2, password);
 
@@ -86,7 +74,7 @@ public class VendedorDaoImp implements VendedorDao {
 			boolean encontro = rs.next();
 
 			if (!encontro) {
-				throw new Exception("El usuario " + usuario +" no coincide con la password");
+				throw new Exception("El usuario " + usuario + " no coincide con la password");
 			}
 		} catch (Exception e) {
 			throw new Exception("login incorrecto");
@@ -94,25 +82,24 @@ public class VendedorDaoImp implements VendedorDao {
 			st.close();
 			rs.close();
 		}
-				
+
 	}
+	
+	/*public void agregarReintento(String usuario) throws Exception {
 
-	public void agregarReintento(String usuario) throws Exception {
+	}*/
 
+	private void finalizarConexion(PreparedStatement st) {
+		try {
+			if (st != null)
+				st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	
-	}
-
-	@Override
-	public void existeUsuario(String usuario) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void existeUsuarioPassword(String usuario, String password) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

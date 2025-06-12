@@ -1,4 +1,4 @@
-package com.sample.core.controller.pedido;
+package com.sample.core.controller.reserva;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class PedidoController extends HttpServlet {
+public class ReservaController extends HttpServlet {
 
 public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	

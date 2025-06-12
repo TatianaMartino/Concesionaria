@@ -12,12 +12,12 @@ public class VendedorServiceImpl implements VendedorService {
 	private VendedorDao vendedorDao = new VendedorDaoImp();
 
 	@Override
-	public void existeVendedor(String usuario) throws Exception {
+	public void existeUsuario(String usuario) throws Exception {
 		vendedorDao.existeUsuario(usuario);
 	}
 
 	@Override
-	public void existeVendedoryPassword(String usuario, String password) throws Exception {
+	public void existeUsuarioPassword(String usuario, String password) throws Exception {
 		vendedorDao.existeUsuarioPassword(usuario, password);
 	}
 

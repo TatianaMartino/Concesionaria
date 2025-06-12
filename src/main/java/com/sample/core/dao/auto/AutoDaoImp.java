@@ -33,6 +33,7 @@ public class AutoDaoImp implements AutoDao {
 
 	private static final String queryCheck = "SELECT stock, stockbase, disponibilidad FROM autos WHERE id = ?";
 	
+	
 
 	// verifica si existe una sucursal en la base de datos con un determinado id.
 	private boolean existeSucursal(int sucursalId) throws SQLException {
