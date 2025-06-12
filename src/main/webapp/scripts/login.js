@@ -11,7 +11,7 @@ $(function() {
 				window.location.href = contextPath + '/LeerAuto';
 			},
 			error: function(data) {
-				//alert(data.responseJSON.mensaje);
+				alert(data.responseJSON.mensaje);
 			},
 			data: {
 				usuario: usuario,

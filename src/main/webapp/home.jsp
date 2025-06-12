@@ -17,6 +17,8 @@
 	</script>
 	<script src="<%=request.getContextPath()%>/scripts/eliminarAuto.js"> </script>
 	
+	<script src="<%=request.getContextPath()%>/scripts/logout.js"></script>
+	
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Agregamos SweetAlert -->
 	
 </head>
@@ -31,6 +33,7 @@
      <div class="header-bottom">
         <a class="btn btn-primary" href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a>
         <a class="btn btn-secondary" href="<%=request.getContextPath()%>/autosReservados">Autos Reservados</a>
+        <a class="btn bnt-secondary" href= "<%=request.getContextPath()%>/logout">Cerrar Sesion</a>
     </div>
 </header>
 
