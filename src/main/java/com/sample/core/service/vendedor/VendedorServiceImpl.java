@@ -9,16 +9,16 @@ import domain.Vendedor;
 
 public class VendedorServiceImpl implements VendedorService {
 
-	private VendedorDao encargadoDao = new VendedorDaoImp();
+	private VendedorDao vendedorDao = new VendedorDaoImp();
 
 	@Override
 	public void existeVendedor(String usuario) throws Exception {
-		encargadoDao.existeUsuario(usuario);
+		vendedorDao.existeUsuario(usuario);
 	}
 
 	@Override
 	public void existeVendedoryPassword(String usuario, String password) throws Exception {
-		encargadoDao.existeUsuarioPassword(usuario, password);
+		vendedorDao.existeUsuarioPassword(usuario, password);
 	}
 
 	
