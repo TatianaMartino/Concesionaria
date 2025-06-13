@@ -36,6 +36,18 @@ header h1 {
     font-family: 'Playfair Display', serif;
 }
 
+.header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Separar izquierda y derecha el header*/
+    padding: 10px;
+}
+
+.header-bottom .left-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 
 .btn {
     display: inline-block;
@@ -66,6 +78,25 @@ header h1 {
 .btn-danger:hover {
     background-color: #ef233c;
     color: white;
+}
+/*boton de cerrar sesion*/
+button{
+	  display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #ef233c;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;  	
+}
+
+button:hover {
+    background-color: #d90429;
 }
 
 
