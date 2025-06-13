@@ -44,6 +44,15 @@ INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) 
 
 UPDATE sucursal SET vendedor_id = 2 WHERE id = 2;
 
+
+INSERT INTO autos (modelo, marca, descripcion, stock, precio, sucursal_id, disponibilidad, stockBase) VALUES
+('Model S', 'Tesla', 'Sedán eléctrico', 1, 80000, 1, 'Disponible', 1),
+('Civic', 'Honda', 'Sedán compacto', 1, 25000, 1, 'Disponible', 1),
+('Mustang', 'Ford', 'Coupé deportivo', 1, 55000, 2, 'Disponible', 1),
+('Corolla', 'Toyota', 'Sedán mediano', 1, 22000, 2, 'Disponible', 1),
+('3 Series', 'BMW', 'Sedán de lujo', 1, 45000, 1, 'Disponible', 1);
+
+
 CREATE TABLE cliente (
   id int(11) NOT NULL,
   nombre varchar(50) DEFAULT NULL,
