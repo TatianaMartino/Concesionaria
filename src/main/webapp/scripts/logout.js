@@ -7,7 +7,7 @@ $(function() {
             dataType: "json",
             success: function(data) {
                 alert(data.mensaje); 
-                window.location.href = contextPath + "login.jsp";
+                window.location.href = contextPath + "/login.jsp";
             },
             error: function(xhr) {
                 if (xhr.responseJSON) {
