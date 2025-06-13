@@ -21,6 +21,7 @@
 	
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Agregamos SweetAlert -->
 	
+	
 </head>
 
 <body>
@@ -30,11 +31,19 @@
         <img src="img/TopCarLogo1.png" alt="Logo"> 
         <h1>Concesionaria Topcar</h1>
     </div>
+    
      <div class="header-bottom">
+    <div class="left-buttons">
         <a class="btn btn-primary" href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a>
         <a class="btn btn-secondary" href="<%=request.getContextPath()%>/autosReservados">Autos Reservados</a>
-        <a class="btn bnt-secondary" href= "<%=request.getContextPath()%>/logout">Cerrar Sesion</a>
+        <!-- <a>Reservas</a> Boón (en proceso)-->
+        <button type="button" class="btn btn-primary">
+            Notifications <span class="badge text-bg-secondary"></span>
+        </button>
     </div>
+    
+    <button id="btn-logout" class="btn btn-danger">Cerrar sesión</button>
+</div>
 </header>
 
 
