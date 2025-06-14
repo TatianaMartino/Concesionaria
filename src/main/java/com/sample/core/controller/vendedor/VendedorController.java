@@ -21,6 +21,8 @@ import com.sample.core.dao.config.Conexion;
 import com.sample.core.service.vendedor.VendedorService;
 import com.sample.core.service.vendedor.VendedorServiceImpl;
 
+import domain.Vendedor;
+
 @WebServlet(urlPatterns = "/Ingresar" )
 public class VendedorController extends HttpServlet { // hereda de HttpServlet, lo que le permite manejar solicitudes
 														// HTTP.
@@ -41,15 +43,21 @@ public class VendedorController extends HttpServlet { // hereda de HttpServlet, 
 			if (password.length()== 0 || password == null)
 				throw new Exception("password vacio");
 					
-			vendedorService.existeUsuario(usuario);;
+			//vendedorService.existeUsuario(usuario);;
+			//vendedorService.existeUsuarioPassword(usuario, password);
 			
-			
-			vendedorService.existeUsuarioPassword(usuario, password);
-			
-			
-			HttpSession jsession = req.getSession(true);
+			/*	HttpSession jsession = req.getSession(true);
 			jsession.setAttribute("CURRENT_USER", usuario);
 			resp.addCookie(new Cookie("JSESSIONID", jsession.getId()));
+			*/
+			
+			 Vendedor vendedor = vendedorService.login(usuario, password);
+			 
+			  HttpSession jsession = req.getSession(true);
+		        jsession.setAttribute("CURRENT_USER", vendedor.getUsuario());
+		        jsession.setAttribute("SUCURSAL_ID", vendedor.getIdsucursal());		
+		        resp.addCookie(new Cookie("JSESSIONID", jsession.getId()));
+			 
 
 			setOutResponse("se logeo corretamente", resp, 200, "ok");
 

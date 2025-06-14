@@ -1,6 +1,7 @@
 package com.sample.core.controller.cliente;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.JsonObject;
 import com.sample.core.service.AutoService;
 import com.sample.core.service.AutoServiceImpl;
 import com.sample.core.service.cliente.ClienteService;
@@ -51,23 +53,19 @@ public class ClienteController extends HttpServlet {
 			// Obtener datos del auto
 			String idAuto = req.getParameter("id");// aca esta el id del formulario
 
-			if (idAuto != null) {
-
+			if (idAuto == null) {
+				resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID del auto no proporcionado.");
+				return; 
+			}
+			
 				int idAUtoParseado = Integer.parseInt(idAuto);
 				Auto auto = autoService.consultarAuto(idAUtoParseado);
 				// para consultar el id del auto que esta reservando el cliente
 				
-				if (auto.getSucursal_id()== vendedor.getIdsucursal()) {
-					
-					
-					
-					
-					
-					
+				if (auto.getSucursal_id()== vendedor.getIdsucursal()) {		
 						
 				}
-				
-				
+			
 				
 				//cambiar el estado del auto
 				Disponibilidad disponibilidad = null;
@@ -97,15 +95,9 @@ public class ClienteController extends HttpServlet {
 				cliente.setCodigoPostal(codigo_postal);
 				cliente.setDatoTarjeta(dato_tarjeta);
 				cliente.setTelefono(telefono);
-
-				
-				
-				
-				
 				
 				
 				// Crear Pedido
-				
 				Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
 				
 				// Ver datos recibidos del formulario
@@ -113,18 +105,21 @@ public class ClienteController extends HttpServlet {
 				System.out.println("Cliente: " + cliente.getNombre() + "" + cliente.getApellido());
 				System.out.println("Auto: " + auto.getMarca() + ", " + auto.getModelo() + "," + auto.getDisponibilidad());
 
-				
-				
-				
-			} else {
-				resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID del auto no proporcionado."); // en caso de que el id este vacio
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		resp.sendRedirect(req.getContextPath() + "/LeerAuto");  // Redirige al inicio
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("utf-8");
 
-	}
+				JsonObject obj = new JsonObject();
+				obj.addProperty("estatus", "ok");
+				obj.addProperty("mensaje", "Se creó exitosamente el registro");
+
+				out.print(obj.toString());
+				out.flush();
+
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al procesar el formulario.");
+			}
+		}
 }
