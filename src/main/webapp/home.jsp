@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*" %>
 <%@ page import="domain.Auto" %>
+
+
+<%
+String usuario = (String) session.getAttribute("CURRENT_USER");
+Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +54,9 @@
 </header>
 
 
-
+ <% if (usuario != null && sucursal != null) { %>
+    <p>Usuario logueado: <%= usuario %></p>
+    <p>Sucursal: <%= sucursal %></p>
 <br>
 <section>
 <% 
@@ -79,10 +88,11 @@
     } else { 
     %>
         <p>No hay autos disponibles.</p>
-    <% 
-    } 
+    <%
+        }
     %>
-</section>
+    </section>
+<% } %>
 
 </body>
 </html>
