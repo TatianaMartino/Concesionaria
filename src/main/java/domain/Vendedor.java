@@ -6,21 +6,27 @@ public class Vendedor {
 	private String nombre;
 	private String apellido;
 	private String usuario;
-	private String contrasena;
+	private String password;
 	private String correo;
-	private int idsucursal;
+	private int id_sucursal;
 
-	public Vendedor(int id, String nombre, String apellido, String usuario, String contrasena, String correo,
-			int idsucursal) {
+	public Vendedor(int id, String nombre, String apellido, String usuario, String password, String correo,
+			int id_sucursal) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.usuario = usuario;
-		this.contrasena = contrasena;
+		this.password = password;
 		this.correo = correo;
-		this.idsucursal = idsucursal;
+		this.id_sucursal = id_sucursal;
 	}
+
+
+	public Vendedor() {
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public int getId() {
 		return id;
@@ -54,12 +60,12 @@ public class Vendedor {
 		this.usuario = usuario;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getCorreo() {
@@ -71,11 +77,11 @@ public class Vendedor {
 	}
 
 	public int getIdsucursal() {
-		return idsucursal;
+		return id_sucursal;
 	}
 
-	public void setIdsucursal(int idsucursal) {
-		this.idsucursal = idsucursal;
+	public void setIdsucursal(int id_sucursal) {
+		this.id_sucursal = id_sucursal;
 	}
 
 }
