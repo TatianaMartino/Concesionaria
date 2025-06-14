@@ -21,8 +21,10 @@ public class VendedorServiceImpl implements VendedorService {
 		vendedorDao.existeUsuarioPassword(usuario, password);
 	}
 
-	
-
+	@Override
+	public Vendedor login(String usuario, String password) throws Exception {
+		return vendedorDao.buscarPorUsuarioYPassword(usuario, password);
+	}
 
 
 }

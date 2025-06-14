@@ -10,5 +10,7 @@ public interface VendedorService {
 
 	public void existeUsuarioPassword(String usuario, String password) throws Exception;
 	
+	public Vendedor login(String usuario, String password) throws Exception;
+	
 
 }
