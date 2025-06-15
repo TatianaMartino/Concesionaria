@@ -2,18 +2,20 @@ $(function() { //peticion ajax al controller para agregar un clinte
 
 	$("#btn-confirmar").click(function(e) {
 		e.preventDefault();
+		
+		var idAuto = $("#idAuto").val();
 		var nombre = $("#nombre").val();
 		//
 		var apellido = $("#apellido").val();
 		var correo = $("#correo").val();
 		var dni = $("#dni").val();
 		var codigo_postal = $("#codigo_postal").val();
-		var dato_tarjeta = $("#sucursal_id").val();
+		var dato_tarjeta = $("#dato_tarjeta").val();
 		var telefono = $("#telefono").val();
 
 
 		$.ajax({
-			url: contextPath + '/CrearCliente',
+			url: contextPath + '/GuardarDatosCliente',
 			dataType: 'json',
 			success: function(data) {
 				Swal.fire({
@@ -38,6 +40,7 @@ $(function() { //peticion ajax al controller para agregar un clinte
 				});
 			},
 			data: {
+				id: idAuto,
 				nombre: nombre,
 				apellido: apellido,
 				correo: correo,
