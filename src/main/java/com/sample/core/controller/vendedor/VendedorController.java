@@ -54,10 +54,9 @@ public class VendedorController extends HttpServlet { // hereda de HttpServlet, 
 			 Vendedor vendedor = vendedorService.login(usuario, password);
 			 
 			  HttpSession jsession = req.getSession(true);
-		        jsession.setAttribute("CURRENT_USER", vendedor.getUsuario());
-		        jsession.setAttribute("SUCURSAL_ID", vendedor.getIdsucursal());		
-		        resp.addCookie(new Cookie("JSESSIONID", jsession.getId()));
-			 
+			  jsession.setAttribute("CURRENT_USER", vendedor);	
+			  jsession.setAttribute("SUCURSAL_ID", vendedor.getIdsucursal());
+
 
 			setOutResponse("se logeo corretamente", resp, 200, "ok");
 
