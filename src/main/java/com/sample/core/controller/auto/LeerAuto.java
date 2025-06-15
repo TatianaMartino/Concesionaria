@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.sample.core.service.AutoService;
 import com.sample.core.service.AutoServiceImpl;
 import domain.Auto;
@@ -35,6 +37,18 @@ public class LeerAuto extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
+			
+			//Obtener la sesión y validarla
+			HttpSession session = req.getSession(false);
+			
+			if (session == null ||  session.getAttribute("CURRENT_USER") == null || session.getAttribute("SUCURSAL_ID") == null) {
+				resp.sendRedirect("login.jsp");
+				return;
+			}
+
+			// Obtener ID de sucursal
+			Integer sucursalId = (Integer) session.getAttribute("SUCURSAL_ID");
+			
 			List<Auto> autos = AutoService.listarAutos();
 			req.setAttribute("autos", autos);
 			req.getRequestDispatcher("home.jsp").forward(req, resp);
