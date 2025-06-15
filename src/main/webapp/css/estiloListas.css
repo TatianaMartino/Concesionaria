@@ -47,7 +47,6 @@ header h1 {
     gap: 10px;
 }
 
-
 .btn.btn-primary {
     display: inline-block !important; 
     padding: 10px 20px !important;
@@ -67,11 +66,12 @@ header h1 {
     background-color: #d90429 !important;
 }
 
-
 /*Boton Cancelar reserva*/
 .btn.btn-warning{
 	display: inline-block !important; 
-    padding: 10px 20px !important;
+    padding: 10px 10px !important; 
+    margin: 5px 0 !important;   
+    font-size: 0.85rem !important;
     margin: 10px 0 !important;
     background-color: #ef233c !important;
     color: white !important;
@@ -88,66 +88,8 @@ btn.btn-warning:hover{
 	background-color: #d90429 !important;
 }
 
-/* Boton eliminar*/
-.btn-danger {
-    background-color: white;
-    color: #ef233c; 
-    border: 2px solid #ef233c;
-}
-
-.btn-danger:hover {
-    background-color: #ef233c;
-    color: white;
-}
-/*boton de cerrar sesion*/
-button{
-	  display: inline-block;
-    padding: 10px 20px;
-    margin: 10px 0;
-    background-color: #ef233c;
-    color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s;  	
-}
-
-button:hover {
-    background-color: #d90429;
-}
-
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-}
-
-article {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 15px;
-    padding: 15px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-article img {
-    width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-form {
-    margin-top: 10px;
-}
-
-p {
-    margin: 5px 0;
+thead th {
+  background-color: #ef233c !important;
+  border: none !important;
+  color: white;
 }
