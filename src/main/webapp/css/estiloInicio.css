@@ -115,6 +115,7 @@ article {
     margin: 15px;
     padding: 15px;
     text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 article img {
