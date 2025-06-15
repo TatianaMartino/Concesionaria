@@ -32,57 +32,46 @@
 <body>
 
 	<form class="form" id="formCliente" enctype="form-data">
-	<input type="hidden" name="idAuto" value="<%=request.getParameter("id")%>" />
+	<input type="hidden" name="idAuto" id="idAuto" value="<%=request.getParameter("id")%>" />
 		<!-- Guarda el id del auto que el cliente eligió -->
 		<!-- Oculto el ID del auto reservado para que el usuario no tenga que ver ese dato ya que no es imporatnte para el.
 		Se le pasa el Id para que el servlet "GuardarDatosCliente" puede saber qué auto está reservando/comprando el cliente -->
 		
 		<div class="form-group">
 			<label for="nombre">Nombre:</label> <input type="text"
-				class="form-control" id="nombre" required name="nombre"
-				aria-describedby="emailHelp" placeholder="Ingrese un nombre" >
+				class="form-control" id="nombre" required name="nombre" placeholder="Ingrese su nombre" >
 		</div>
 		
 		<div class="form-group">
 			<label for="apellido">Apelido:</label> <input type="text"
-				class="form-control" id="apellido" required name="apellido"
-				aria-describedby="emailHelp" placeholder="Ingrese un apellido">
+				class="form-control" id="apellido" required name="apellido" placeholder="Ingrese su apellido">
 		</div>
 		
 		<div class="form-group">
 			<label for="correo">Correo:</label> <input type="email"
-				class="form-control" id="descripcion" required name="descripcion"
-				aria-describedby="emailHelp" placeholder="Ingrese una descripcion">
+				class="form-control" id="correo" required name="correo" placeholder="Ingrese su correo">
 		</div>
 	
 		<div class="form-group">
-			<label for="stock">Stock:</label>
-			<select id="stock" required name="stock" class="form-control">
-        		<option value="1">1</option>
-        	</select>
+			<label for="dni">Dni:</label> <input type="text"
+				class="form-control" id="dni" required name="dni" placeholder="Ingrese su dni">
 		</div>
 
 		<div class="form-group">
-			<label for="precio">Precio</label> <input type="text"
-				class="form-control" id="precio" required name="precio"
-				aria-describedby="emailHelp" placeholder="Ingrese un precio">
+			<label for="codigo_postal">Codigo postal:</label> <input type="text"
+				class="form-control" id="codigo_postal" required name="codigo_postal"  placeholder="Ingrese su codigo postal">
 		</div>
 		
 		<div class="form-group">
-			<label for="sucursal_id">Selecciona una sucursal:</label>
-			<select id="sucursal_id" required name="sucursal_id" class="form-control">
-        		<option value="1">Sucursal 1</option>
-       			<option value="2">Sucursal 2</option>
-        	</select>
+			<label for="dato_tarjeta">Numero de tarjeta:</label> <input type="text"
+				class="form-control" id="dato_tarjeta" required name="dato_tarjeta"  placeholder="Ingrese su numero de tarjeta">
+		</div>
+		
+		<div class="form-group">
+			<label for="telefono">Telefono:</label> <input type="text"
+				class="form-control" id="telefono" required name="telefono" placeholder="Ingrese su telefono">
 		</div>
 			
-		<div class="form-group"> 
-			<label for="disponibilidad">Seleccione disponibilidad:</label>
-  		  	<select id="disponibilidad" name="disponibilidad" class="form-control">
-        		<option value="DISPONIBLE">DISPONIBLE</option>
-    		</select>
-    	</div>
-   
     		
 	<button type="button" class="btn btn-primary" id="btn-confirmar">Submit</button> <!-- lleva al agregarAuto.js para crear un auto -->
 	</form>
@@ -97,45 +86,66 @@ $(document).ready(function () {
 	//define las reglas que tiene que tener para que el ingreso sea valido
   $("#formCliente").validate({
     rules: {
-      modelo: {
+    	nombre: {
         required: true,
         minlength: 2
       },
-      marca: {
+      apellido: {
         required: true,
         minlength: 2
       },
-      descripcion: {
-        required: true,
-        minlength: 10
+      correo: {
+    	  required: true,
+    	  email: true
       },
-      precio: {
+      dni: {
+        required: true,
+        number: true,
+        minlength: 7
+      },
+      codigo_postal: {
         required: true,
         number: true
       },
-      sucursal_id: {
+      dato_tarjeta: {
         required: true
       },
-      disponibilidad: {
-        required: true
-      }
+      telefono: {
+          required: true,
+          number: true,
+          minlength: 10
+        }
     },
     messages: {
-      modelo: {
-        required: "Por favor, ingrese un modelo",
+    	nombre: {
+        required: "Por favor, ingrese un nombre",
         minlength: "El modelo debe tener al menos 2 caracteres"
       },
-      marca: {
-        required: "Por favor, ingrese una marca",
+      apellido: {
+        required: "Por favor, ingrese un apellido",
         minlength: "La marca debe tener al menos 2 caracteres"
       },
-      descripcion: {
-        required: "Por favor, ingrese una descripción",
-        minlength: "La descripción debe tener al menos 10 caracteres"
+      correo: {
+    	  required: "Por favor, ingrese un correo electrónico",
+    	  email: "Ingrese un correo válido (ej: nombre@dominio.com)"
       },
-      precio: {
+      dni: {
         required: "Por favor, ingrese un precio",
-        number: "Ingrese un valor numérico válido"
+        number: "Ingrese un valor numérico válido",
+        minlength: "El dni debe tener al menos 7 caracteres"
+      },
+      codigo_postal: {
+          required: "Por favor, ingrese un codigo postal",
+          number: "Ingrese un valor numérico válido"
+        },
+      dato_tarjeta: {
+    	  required: "Por favor, ingrese su numero de tarjeta"
+      },
+      telefono: {
+    	  required: "Por favor, ingrese un telefono",
+    	  number: "Ingrese un valor numérico válido",
+          minlength: "El telefono debe tener al menos 10 caracteres"
+
       }
     },
     errorElement: "div", //coloca el error en cada div
