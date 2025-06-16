@@ -3,7 +3,7 @@ package domain;
 import utils.Disponibilidad;
 import utils.SituacionPedidos;
 
-public class Pedido {
+public class Reserva {
 
 	private String id;
 	private int monto;
@@ -16,7 +16,7 @@ public class Pedido {
 
 	Cliente cliente;
 
-	public Pedido(Auto auto, Disponibilidad disponibilidad, Cliente cliente, SituacionPedidos situacion) {
+	public Reserva(Auto auto, Disponibilidad disponibilidad, Cliente cliente, SituacionPedidos situacion) {
 		super();
 		this.auto = auto;
 		this.disponibilidad = disponibilidad;
