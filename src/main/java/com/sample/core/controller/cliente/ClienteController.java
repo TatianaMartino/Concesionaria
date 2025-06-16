@@ -18,7 +18,7 @@ import com.sample.core.service.cliente.ClienteServiceImp;
 
 import domain.Auto;
 import domain.Cliente;
-import domain.Pedido;
+import domain.Reserva;
 import domain.Vendedor;
 import utils.Disponibilidad;
 import utils.SituacionPedidos;
@@ -98,7 +98,7 @@ public class ClienteController extends HttpServlet {
 				
 				
 				// Crear Pedido
-				Pedido pedido = new Pedido(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
+				Reserva reserva = new Reserva(auto, Disponibilidad.RESERVADO, cliente, SituacionPedidos.PAGOPROVISORIO);
 				
 				// Ver datos recibidos del formulario
 				System.out.println("Datos del Pedido");
