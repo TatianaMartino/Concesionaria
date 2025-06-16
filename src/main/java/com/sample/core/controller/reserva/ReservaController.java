@@ -12,8 +12,9 @@ public class ReservaController extends HttpServlet {
 public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 	 // Obtener datos necesarios del formulario
-   // String clienteId = req.getParameter("clienteId");
-   // String idAuto = req.getParameter("idAuto");
+   //String clienteId = req.getParameter("clienteId");
+   //String idAuto = req.getParameter("idAuto");
+   
 	
 }
 }
