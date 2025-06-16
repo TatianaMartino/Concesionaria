@@ -4,6 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>VerPedidos</servlet-name>
+  	<display-name>VerPedidos</display-name>
+  	<description></description>
+  	<servlet-class>com.sample.core.controller.traslado.VerPedidos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>VerPedidos</servlet-name>
+  	<url-pattern>/VerPedidos</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
 	<welcome-file>login.jsp</welcome-file>
