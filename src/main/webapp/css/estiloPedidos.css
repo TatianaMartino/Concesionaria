@@ -1,0 +1,152 @@
+body {
+    font-family: 'Playfair Display', serif;
+	padding: 20px;
+	color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #ef233c;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-bottom {
+    margin-top: 5px; 
+    text-align: left;
+}
+
+
+header img {
+    height: 140px;
+}
+
+header h1 {
+	color: white;
+    margin: 0;
+    font-size: 2em; 
+    font-family: 'Playfair Display', serif;
+}
+
+.header-bottom {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.header-bottom .left-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+h1 {
+	text-align: center;
+	color: #dc3545;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em; 
+    font-family: 'Playfair Display', serif;
+}
+
+.btn.btn-primary {
+    display: inline-block !important; 
+    padding: 10px 20px !important;
+    margin: 10px 0 !important;
+    background-color: #ef233c !important;
+    color: white !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-radius: 5px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s !important;  
+}
+
+.btn.btn-primary:hover {
+    background-color: #d90429 !important;
+}
+
+
+table {
+	width: 90%;
+	margin: 20px auto;
+	border-collapse: collapse;
+	background-color: #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+
+thead tr {
+	background-color: #ef233c; 
+	color: white;
+	text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+	background-color: #f1f1f1;
+}
+
+button {
+	background-color: #28a745;
+	color: white;
+	padding: 6px 12px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #218838;
+}
+
+p {
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.volver-inicio {
+	display: inline-block;
+	margin: 20px auto;
+	padding: 10px 20px;
+	background-color: #ef233c;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	font-weight: bold;
+	transition: background-color 0.3s;
+}
+
+.volver-inicio:hover {
+	background-color: #d90429;
+}
+
+
+
