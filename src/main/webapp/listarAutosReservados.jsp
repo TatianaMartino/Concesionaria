@@ -57,7 +57,7 @@ Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
 					href="<%=request.getContextPath()%>/autosReservados">Autos
 					Reservados</a> 
 				<a class="btn btn-primary"
-					href="<%=request.getContextPath()%>/pedidos.jsp">Pedidos</a> 
+					href="<%=request.getContextPath()%>/verPedidos">Pedidos</a> 
 				<a class="btn btn-primary"
 					href="<%=request.getContextPath()%>/listarAutoExterno.jsp">Autos Externos</a>
 
