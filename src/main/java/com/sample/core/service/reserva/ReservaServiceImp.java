@@ -1,11 +1,13 @@
 package com.sample.core.service.reserva;
 
-import domain.Pedido;
+import java.util.List;
+
+import domain.Reserva;
 
 public class ReservaServiceImp implements ReservaService{
 
 	@Override
-	public void guardarPedido(Pedido pedido) throws Exception {
+	public void guardarPedido(Reserva reserva) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
@@ -15,5 +17,13 @@ public class ReservaServiceImp implements ReservaService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Reserva> listaReservas() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }
