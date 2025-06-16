@@ -82,3 +82,18 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ CREATE TABLE `solicitud_traslado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `auto_id` int(11) NOT NULL,
+  `sucursalOrigen_id` int(11) NOT NULL,
+  `sucursalDestino_id` int(11) NOT NULL,
+  `estado` enum('PENDIENTE','APROBADO','RECHAZADO') DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `auto_id` (`auto_id`),
+  KEY `sucursalOrigen_id` (`sucursalOrigen_id`),
+  KEY `sucursalDestino_id` (`sucursalDestino_id`),
+  CONSTRAINT `solicitud_traslado_ibfk_1` FOREIGN KEY (`auto_id`) REFERENCES `autos` (`id`),
+  CONSTRAINT `solicitud_traslado_ibfk_2` FOREIGN KEY (`sucursalOrigen_id`) REFERENCES `sucursal` (`id`),
+  CONSTRAINT `solicitud_traslado_ibfk_3` FOREIGN KEY (`sucursalDestino_id`) REFERENCES `sucursal` (`id`)
+)
