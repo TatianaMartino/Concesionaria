@@ -34,13 +34,13 @@ FOREIGN KEY (sucursal_id) REFERENCES sucursal(id)
 
 INSERT INTO sucursal (direccion, codigo_postal, vendedor_id) VALUES ('Av. Rivadavia 6425', 1406, NULL);
 
-INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) VALUES ('Juan', 'Pérez', 'jnperez', '1234', 1, 'juan@mail.com');
+INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) VALUES ('Juan', 'Pérez', 'vendedor1', '1234', 1, 'juan@gmail.com');
 
 UPDATE sucursal SET vendedor_id = 1 WHERE id = 1;
 
 INSERT INTO sucursal (direccion, codigo_postal, vendedor_id) VALUES ('Güemes 4791 Cdad. Autónoma de Buenos Aires', 1425, NULL);
 
-INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) VALUES ('Marcos', 'Rodriguez', 'MarcosRodriguez', 'ghtd12', 2, 'rodriguezMarc@gmail.com');
+INSERT INTO vendedor (nombre, apellido, usuario, password, id_sucursal, correo) VALUES ('Marcos', 'Rodriguez', 'vendedor2', '1234', 2, 'rodriguezMarc@gmail.com');
 
 UPDATE sucursal SET vendedor_id = 2 WHERE id = 2;
 
