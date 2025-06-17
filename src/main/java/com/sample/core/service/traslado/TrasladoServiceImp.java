@@ -15,8 +15,8 @@ public class TrasladoServiceImp implements TrasladoService {
 	}
 
 	@Override
-	public List<Traslado> listarPedidosRecibidos(int sucursalOrigenId) throws Exception {
-		return trasladoDao.listarPorSucursalOrigen(sucursalOrigenId);
+	public List<Traslado> listarPedidosRecibidos(int sucursalOrigen_id) throws Exception {
+		return trasladoDao.listarPorSucursalOrigen(sucursalOrigen_id);
 	}
 
 	@Override
