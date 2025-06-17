@@ -58,8 +58,6 @@ Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
 					Reservados</a> 
 				<a class="btn btn-primary"
 					href="<%=request.getContextPath()%>/verPedidos">Pedidos</a> 
-				<a class="btn btn-primary"
-					href="<%=request.getContextPath()%>/listarAutoExterno.jsp">Autos Externos</a>
 
 				<div class="dropdown ms-auto">
 					<button class="btn btn-primary dropdown-toggle" type="button"
@@ -97,8 +95,8 @@ Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
         } else {
     %>
 
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
+    <table>
+        <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Modelo</th>
