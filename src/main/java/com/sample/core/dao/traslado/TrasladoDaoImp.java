@@ -26,11 +26,11 @@ public class TrasladoDaoImp implements TrasladoDao{
     }
 
     @Override
-    public List<Traslado> listarPorSucursalOrigen(int sucursalOrigenId) throws Exception {
+    public List<Traslado> listarPorSucursalOrigen(int sucursalOrigen_id) throws Exception {
         String sql = "SELECT * FROM solicitud_traslado WHERE sucursalOrigen_id = ? AND estado = 'PENDIENTE'";
         List<Traslado> lista = new ArrayList<>();
         try (PreparedStatement stmt = conexion.dameConnection().prepareStatement(sql)) {
-            stmt.setInt(1, sucursalOrigenId);
+            stmt.setInt(1, sucursalOrigen_id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Traslado t = new Traslado(

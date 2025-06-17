@@ -8,7 +8,7 @@ public interface TrasladoDao {
 	
 	 public void crear(Traslado traslado) throws Exception;
 	
-    public List<Traslado> listarPorSucursalOrigen(int sucursalOrigenId) throws Exception;
+    public List<Traslado> listarPorSucursalOrigen(int sucursalOrigen_id) throws Exception;
     
     public void aceptarTraslado(int trasladoId) throws Exception;
 }
