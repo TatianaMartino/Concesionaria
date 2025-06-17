@@ -33,12 +33,13 @@ public class TrasladoController extends HttpServlet {
 		String ruta = req.getServletPath();
 
 		if (ruta.equals("/verPedidos")) {
+			
 			// Integer sucursalOrigen =
 			// Integer.parseInt(req.getParameter("sucursalOrigen")); // fija: 1 o 2
 
-			Integer sucursalOrigen = (Integer) req.getSession().getAttribute("SUCURSAL_ID");
+			Integer sucursalDestino = (Integer) req.getSession().getAttribute("SUCURSAL_ID");
 			try {
-				List<Traslado> pedidos = trasladoService.listarPedidosRecibidos(sucursalOrigen);
+				List<Traslado> pedidos = trasladoService.listarPedidosRecibidos(sucursalDestino);
 				req.setAttribute("pedidos", pedidos);
 				req.getRequestDispatcher("/pedidos.jsp").forward(req, resp);
 			} catch (Exception e) {
@@ -56,9 +57,7 @@ public class TrasladoController extends HttpServlet {
 				int trasladoId = Integer.parseInt(req.getParameter("id"));
 				trasladoService.aceptarTraslado(trasladoId);
 
-				// resp.sendRedirect("verPedidos?sucursalOrigen=" +
-				// req.getParameter("sucursalOrigen"));
-				resp.sendRedirect("verPedidos");
+	            resp.sendRedirect(req.getContextPath() + "/LeerAuto");
 
 			} else if (ruta.equals("/crearTraslado")) {
 				int autoId = Integer.parseInt(req.getParameter("autoId"));
