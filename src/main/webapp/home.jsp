@@ -2,10 +2,19 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 <%@ page import="domain.Auto"%>
+<%@ page import="domain.Traslado" %>
 <%@ page import="domain.Vendedor"%>
 <%
 Vendedor vendedor = (Vendedor) session.getAttribute("CURRENT_USER");
 Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
+List<Traslado> pedidos = (List<Traslado>) request.getAttribute("pedidos");
+
+//Si hay pedidos pendientes, setealo como atributo
+if (pedidos != null && !pedidos.isEmpty()) {
+ request.setAttribute("tienePedidosPendientes", true);
+} else {
+ request.setAttribute("tienePedidosPendientes", false);
+}
 %>
 
 <!DOCTYPE html>
@@ -48,18 +57,9 @@ Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
 
 		<div class="header-bottom">
 			<div class="left-buttons">
-				<a class="btn btn-primary"
-					href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a>
-				<a class="btn btn-primary"
-					href="<%=request.getContextPath()%>/autosReservados">Autos
-					Reservados</a> <a class="btn btn-primary"
-					href="<%=request.getContextPath()%>/verPedidos">Pedidos</a> <a
-					class="btn btn-primary"
-					href="<%=request.getContextPath()%>/listarAutoExterno.jsp">Autos
-					Externos</a>
-				<!--  <button type="button" class="btn btn-primary">
-					Notifications <span class="badge text-bg-secondary"></span>
-				</button>-->
+				<a class="btn btn-primary" href="<%=request.getContextPath()%>/autoForm.jsp">Agregar Auto</a>
+				<a class="btn btn-primary" href="<%=request.getContextPath()%>/autosReservados">Autos Reservados</a>
+				<a class="btn btn-primary" href="<%=request.getContextPath()%>/verPedidos">Pedidos</a>
 
 				<div class="dropdown ms-auto">
 					<button class="btn btn-primary dropdown-toggle" type="button"
@@ -116,7 +116,7 @@ Integer sucursal = (Integer) session.getAttribute("SUCURSAL_ID");
 			if (auto.getSucursal_id() != sucursal) {
 			%>
 			<button class="btn btn-warning"
-				onclick="solicitarTraslado(<%=auto.getId()%>, <%=sucursal%>, <%=auto.getSucursal_id()%>)">Reservar
+				onclick="solicitarTraslado(<%=auto.getId()%>, <%=auto.getSucursal_id()%>, <%=sucursal%>)">Reservar
 				Auto</button>
 			<%
 			} else {
