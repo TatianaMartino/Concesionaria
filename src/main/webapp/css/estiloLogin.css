@@ -12,6 +12,23 @@ h1{
  color: #ef233c;	
 }
 
+.form {
+    animation: fadeInUp 1s ease;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 form.form {
     background-color: #ffffff;
     padding: 30px 40px;
@@ -50,6 +67,22 @@ select.form-control {
     border-radius: 5px;
     font-size: 1em;
     box-sizing: border-box;
+}
+
+.form-control, .btn {
+    transition: all 0.3s ease;
+}
+
+/* Efecto al enfocar el campo */
+.form-control:focus {
+    border-color: #ef233c;
+    box-shadow: 0 0 5px rgba(239, 35, 60, 0.5);
+}
+
+/* Hover del botón */
+.btn-primary:hover {
+    background-color: #d90429;
+    transform: scale(1.05);
 }
 
 button{
